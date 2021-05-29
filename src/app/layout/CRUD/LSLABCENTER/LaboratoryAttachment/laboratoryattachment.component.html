@@ -1,0 +1,26 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)"  size = "medium" color = "#fff" type = "ball-spin" [fullScreen] = "true">
+   <p style="color: white" > Cargando información, por favor espere... </p>
+</ngx-spinner>
+<div class="row">
+   <h1 class="col-12 text-right">
+      Adjuntos de los Laboratorios
+   </h1>
+</div>
+<div class="row">
+   <div class="col-12">
+      <div class="btn-toolbar" role="toolbar">
+         <div class="btn-group mr-2" role="group">
+            <div class="input-group">
+               <div class="input-group-prepend">
+                 <span class="input-group-text" id="basic-addon1">Laboratorio</span>
+               </div>
+               <select class="form-control" [(ngModel)]="laboratory_id">
+                  <option value="0">Seleccione...</option>
+                  <option *ngFor="let laboratory of laboratories" [value]="laboratory.id">{{laboratory.ruc}} - {{laboratory.description}}</option>
+               </select>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<app-laboratory-admin-attachments [laboratory_id]="laboratory_id" *ngIf="laboratory_id != 0"></app-laboratory-admin-attachments>

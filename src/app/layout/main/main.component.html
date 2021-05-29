@@ -1,0 +1,93 @@
+
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)"  size = "medium" color = "#fff" type = "ball-spin" [fullScreen] = "true">
+    <p style="color: white" > Cargando información, por favor espere... </p>
+</ngx-spinner>
+<div class="row">
+    <h5 class="col-12">Paciente</h5>
+    <div class="col-12">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <button type="button" title="Buscar" class="btn btn-primary" (click)="search_patient()" [disabled]="search_criteria.length < 3">
+                    <i class="fas fa-search"></i>&nbsp;Buscar Paciente
+                </button>
+            </div>
+            <input type="text" class="form-control" placeholder="Identificación o Nombre Completo" [(ngModel)]="search_criteria" (keyup)="wait_for_search($event)">
+            <button type="button" title="Nuevo Paciente" class="btn btn-success" (click)="new_patient(new_patient_modal)">
+                <i class="fas fa-user-plus"></i>&nbsp;Nuevo Paciente
+            </button>
+        </div>
+    </div>
+</div>
+<div *ngIf="show_search_results">
+    <h6 class="col-12">Pacientes Encontrados</h6>
+    <div class="col-12">
+        <table class="table table-hover mt-2">
+            <thead>
+               <tr>
+                  <th>Identificación</th>
+                  <th>Nombre completo</th>
+                  <th>Correo Electrónico</th>
+                  <th>Teléfono de Contacto</th>
+                  <th>Dirección</th>
+                  <th>Opciones</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr *ngIf="patients.length == 0">
+                  <td colspan="6">No se encontraron resultados</td>
+               </tr>
+               <tr *ngFor="let patient of patients" (click)="selectPatient(patient)" [ngClass]="{'bg-success text-light': patientSelected.id === patient.id}">
+                  <td>{{patient.identification}}</td>
+                  <td>{{patient.fullname}}</td>
+                  <td>{{patient.email}}</td>
+                  <td>{{patient.contact_number}}</td>
+                  <td>{{patient.address}}</td>
+                  <td>
+                    <button type="button" title="Nuevo Paciente" class="btn btn-warning" (click)="edit_patient(patient, new_patient_modal)">
+                      <i class="fas fa-user-edit"></i>&nbsp;Editar Paciente
+                    </button>
+                  </td>
+               </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row mt-5" *ngIf="patientSelected.id != 0">
+    <div class="col-12">
+        <div class="card col-12">
+            <h5 class="card-title text-center">DATOS DEL PACIENTE</h5>
+            <table class="table border-0">
+                <tbody>
+                  <tr>
+                    <th class="border-0 text-right">NOMBRE</th>
+                    <td class="border-0">{{patientSelected.fullname.value}}</td>
+                    <th class="border-0 text-right">IDENTIFICACIÓN</th>
+                    <td class="border-0">{{patientSelected.identification.value}}</td>
+                  </tr>
+                  <tr>
+                    <th class="border-0 text-right">EDAD</th>
+                    <td class="border-0" colspan="3">{{patientSelected.age}} AÑOS</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+
+
+
+ <ng-template #new_patient_modal let-modal>
+    <div class="modal-header">
+       <h4 class="modal-title">Paciente:</h4>
+       <button type="button" class="close" (click)="modal.dismiss('Cross click')">
+          <span>&times;</span>
+       </button>
+    </div>
+    <div class="modal-body">
+       <app-edit-patient [patient]="patientSelected"></app-edit-patient>
+    </div>
+    <div class="modal-footer">
+       <button type="button" [disabled]="!patientSelected.patient_form.valid" class="btn btn-outline-success" (click)="modal.close('Guardar click')">Guardar</button>
+       <button type="button" class="btn btn-outline-danger" (click)="modal.close('Cancelar click')">Cancelar</button>
+    </div>
+ </ng-template>

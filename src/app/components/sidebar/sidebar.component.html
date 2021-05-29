@@ -1,0 +1,74 @@
+<nav class="sidebar" [ngClass]="{ sidebarPushRight: isActive, collapsed: collapsed }">
+   <div class="list-group">
+      <a [routerLink]="['/main']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+         <i class="fas fa-tachometer-alt"></i>&nbsp; <span>Main</span>
+      </a>
+
+      <div class="nested-menu">
+         <a class="list-group-item" (click)="addExpandClass('bdd lslabcenter')">
+            <span class="fas fa-database"></span>&nbsp;Mis Datos
+         </a>
+         <li class="nested" [class.expand]="showMenu === 'bdd lslabcenter'">
+            <ul class="submenu">
+
+
+               <!--LSLabCenter-->
+               <li>
+                  <a [routerLink]="['/my-laboratory']" [routerLinkActive]="['router-link-active']" class="list-group-item">Mi Laboratorio</a>
+               </li>
+               <li>
+                  <a [routerLink]="['/patient']" [routerLinkActive]="['router-link-active']" class="list-group-item">Pacientes</a>
+               </li>
+               <li>
+                  <a [routerLink]="['/sample']" [routerLinkActive]="['router-link-active']" class="list-group-item">Sample </a>
+               </li>
+               <li>
+                  <a [routerLink]="['/sample_param']" [routerLinkActive]="['router-link-active']" class="list-group-item">SampleParam </a>
+               </li>
+               <li>
+                  <a [routerLink]="['/result']" [routerLinkActive]="['router-link-active']" class="list-group-item">Result </a>
+               </li>
+               <li>
+                  <a [routerLink]="['/result_param']" [routerLinkActive]="['router-link-active']" class="list-group-item">ResultParam </a>
+               </li>
+               <li>
+                  <a [routerLink]="['/result_attachment']" [routerLinkActive]="['router-link-active']" class="list-group-item">ResultAttachment </a>
+               </li>
+               <li>
+                  <a [routerLink]="['/laboratory']" [routerLinkActive]="['router-link-active']" class="list-group-item">Laboratorios</a>
+               </li>
+               <li>
+                  <a [routerLink]="['/laboratory_attachment']" [routerLinkActive]="['router-link-active']" class="list-group-item">Adjuntos por Laboratorio</a>
+               </li>
+               <li>
+                  <a [routerLink]="['/laboratory_auth_user']" [routerLinkActive]="['router-link-active']" class="list-group-item">Usuarios por Laboratorio</a>
+               </li>
+               <li>
+                  <a [routerLink]="['/user_profile']" [routerLinkActive]="['router-link-active']" class="list-group-item">Perfiles de Usuario</a>
+               </li>
+               <li>
+                  <a [routerLink]="['/account-profile']" [routerLinkActive]="['router-link-active']" class="list-group-item">Perfiles</a>
+               </li>
+               <li>
+                  <a [routerLink]="['/template']" [routerLinkActive]="['router-link-active']" class="list-group-item">Template</a>
+               </li>
+            </ul>
+         </li>
+      </div>
+      <div class="nested-menu">
+         <a class="list-group-item" (click)="addExpandClass('profile')">
+            <span><img class="rounded-circle" src="{{profileImg}}" width="32px" height="32px"></span>&nbsp;<small>{{ user.name }}</small>
+         </a>
+         <li class="nested" [class.expand]="showMenu === 'profile'">
+            <ul class="submenu">
+               <li>
+                  <a [routerLink]="['/profile']" [routerLinkActive]="['router-link-active']" class="list-group-item">Perfil </a>
+               </li>
+               <li>
+                  <a [routerLink]="['/login']" (click)="logOut()"><span>&nbsp;Cerrar Sesión</span></a>
+               </li>
+            </ul>
+         </li>
+      </div>
+   </div>
+</nav>

@@ -1,0 +1,68 @@
+
+ <div class="row">
+    <h1 class="col-12 text-right">
+       Mi Laboratorio
+    </h1>
+ </div>
+ <div class="row">
+    <div class="col-12">
+       <div class="form-group row">
+          <label for="description" class="col-4 col-form-label text-right">Número de RUC</label>
+          <div class="col-8">
+             <input type="text" class="form-control" id="ruc" name="ruc" placeholder="Número de RUC" [(ngModel)]="laboratorySelected.ruc">
+          </div>
+       </div>
+       <div class="form-group row">
+          <label for="description" class="col-4 col-form-label text-right">Nombre Comercial</label>
+          <div class="col-8">
+             <input type="text" class="form-control" id="description" name="description" placeholder="Nombre Comercial" [(ngModel)]="laboratorySelected.description">
+          </div>
+       </div>
+       <div class="form-group row">
+          <label for="description" class="col-4 col-form-label text-right">Nombre de Responsable</label>
+          <div class="col-8">
+             <input type="text" class="form-control" id="responsable_name" name="responsable_name" placeholder="Nombre de Responsable" [(ngModel)]="laboratorySelected.responsable_name">
+          </div>
+       </div>
+       <div class="form-group row">
+          <label for="description" class="col-4 col-form-label text-right">Teléfono de Contacto Principal</label>
+          <div class="col-8">
+             <input type="text" class="form-control" id="main_contact_number" name="main_contact_number" placeholder="Teléfono de Contacto Principal" [(ngModel)]="laboratorySelected.main_contact_number">
+          </div>
+       </div>
+       <div class="form-group row">
+          <label for="description" class="col-4 col-form-label text-right">Teléfono de Contacto Secundario</label>
+          <div class="col-8">
+             <input type="text" class="form-control" id="secondary_contact_number" name="secondary_contact_number" placeholder="Teléfono de Contacto Secundario" [(ngModel)]="laboratorySelected.secondary_contact_number">
+          </div>
+       </div>
+       <div class="form-group row">
+          <label for="address" class="col-4 col-form-label text-right">Dirección</label>
+          <div class="col-8">
+             <input type="text" class="form-control" id="address" name="address" placeholder="Dirección" [(ngModel)]="laboratorySelected.address">
+          </div>
+       </div>
+       <div class="form-group row">
+          <label for="geolocation" class="col-4 col-form-label text-right">Geolocalización</label>
+          <div class="col-8">
+             <agm-map class="col-12" style="height: 400px;"[latitude]="laboratorySelected.geolocation.coordinates[1] * 1" [longitude]="laboratorySelected.geolocation.coordinates[0] * 1" [zoom]="15" (mapClick)="geolocationEvent($event)">
+                <agm-marker [latitude]="laboratorySelected.geolocation.coordinates[1] * 1" [longitude]="laboratorySelected.geolocation.coordinates[0] * 1" [markerDraggable]="true" (dragEnd)="geolocationEvent($event)" [animation]="'DROP'"></agm-marker>
+             </agm-map>
+          </div>
+       </div>
+    </div>
+ </div>
+ <div class="row">
+     <div class="col-12 text-center">
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-success" (click)="save_changes()">Guardar Cambios</button>
+            <button type="button" class="btn btn-danger" (click)="refresh()">Cancelar</button>
+        </div>
+     </div>
+ </div>
+ <div class="row">
+    <h1 class="col-12 text-right">
+       Archivos Adjuntos
+    </h1>
+ </div>
+ <app-laboratory-admin-attachments [laboratory_id]="laboratorySelected.id"></app-laboratory-admin-attachments>
