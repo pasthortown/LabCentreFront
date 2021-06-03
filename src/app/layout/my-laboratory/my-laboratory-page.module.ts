@@ -8,6 +8,7 @@ import { MyLaboratoryPageComponent } from './my-laboratory-page.component';
 import { LaboratoryService } from 'src/app/services/CRUD/LSLABCENTER/laboratory.service';
 import { environment } from 'src/environments/environment';
 import { AgmCoreModule } from '@agm/core';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 import { LaboratoryAdminAttachmentsModule } from './../../business/laboratory-admin-attachments/laboratory-admin-attachments.module';
 
@@ -16,6 +17,7 @@ import { LaboratoryAdminAttachmentsModule } from './../../business/laboratory-ad
             MyLaboratoryPageRoutingModule, 
             AgmCoreModule.forRoot({apiKey: environment.gmapapiKey}),
             FormsModule,
+            NgxSpinnerModule,
             LaboratoryAdminAttachmentsModule],
   declarations: [MyLaboratoryPageComponent],
   providers: [LaboratoryService]

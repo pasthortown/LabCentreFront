@@ -10,7 +10,7 @@ import { ToastrModule } from 'ng6-toastr-notifications';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,

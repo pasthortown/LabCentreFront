@@ -1,4 +1,7 @@
 
+ <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)"  size = "medium" color = "#fff" type = "ball-spin" [fullScreen] = "true">
+   <p style="color: white" > Cargando información, por favor espere... </p>
+</ngx-spinner>
  <div class="row">
     <h1 class="col-12 text-right">
        Mi Laboratorio
@@ -65,4 +68,4 @@
        Archivos Adjuntos
     </h1>
  </div>
- <app-laboratory-admin-attachments [laboratory_id]="laboratorySelected.id"></app-laboratory-admin-attachments>
+ <app-laboratory-admin-attachments [laboratory_id]="laboratorySelected.id" *ngIf="laboratorySelected.id != 0 && laboratorySelected != null"></app-laboratory-admin-attachments>

@@ -71,6 +71,10 @@ const routes: Routes = [
             loadChildren: './my-laboratory/my-laboratory-page.module#MyLaboratoryPageModule'
          },
          {
+            path: 'my-templates',
+            loadChildren: './my-templates/my-templates-page.module#MyTemplatesPageModule'
+         },
+         {
             path: 'blank',
             loadChildren: './blank-page/blank-page.module#BlankPageModule'
          },
