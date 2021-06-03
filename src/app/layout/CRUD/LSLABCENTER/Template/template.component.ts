@@ -18,6 +18,8 @@ export class TemplateComponent implements OnInit {
    lastPage = 1;
    showDialog = false;
    recordsByPage = 5;
+   laboratory_id = 1;
+
    constructor(
                private modalService: NgbModal,
                private toastr: ToastrManager,
@@ -43,7 +45,7 @@ export class TemplateComponent implements OnInit {
    getTemplates() {
       this.templates = [];
       this.templateSelected = new Template();
-      this.templateDataService.get_paginate(this.recordsByPage, this.currentPage).then( r => {
+      this.templateDataService.get_paginate(this.recordsByPage, this.currentPage, this.laboratory_id).then( r => {
          this.templates = r.data as Template[];
          this.lastPage = r.last_page;
       }).catch( e => console.log(e) );
@@ -51,6 +53,7 @@ export class TemplateComponent implements OnInit {
 
    newTemplate(content) {
       this.templateSelected = new Template();
+      this.templateSelected.laboratory_id = this.laboratory_id;
       this.openDialog(content);
    }
 
@@ -85,9 +88,9 @@ export class TemplateComponent implements OnInit {
    toCSV() {
       this.templateDataService.get().then( r => {
          const backupData = r as Template[];
-         let output = 'id;variables;body\n';
+         let output = 'id;variables;body;orientation;title\n';
          backupData.forEach(element => {
-            output += element.id + ';' + element.variables + ';' + element.body + '\n';
+            output += element.id + ';' + element.body + ';' + element.orientation + ';' + element.title + '\n';
          });
          const blob = new Blob([output], { type: 'text/plain;charset=utf-8' });
          const fecha = new Date();
@@ -126,5 +129,9 @@ export class TemplateComponent implements OnInit {
             }
          }
       }), ( r => {}));
+   }
+
+   downloadFile(template: Template) {
+      return template;
    }
 }

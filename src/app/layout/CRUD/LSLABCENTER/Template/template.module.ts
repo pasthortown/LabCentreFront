@@ -6,17 +6,21 @@ import { TemplateRoutingModule } from './template-routing.module';
 import { TemplateComponent } from './template.component';
 import { TemplateService } from 'src/app/services/CRUD/LSLABCENTER/template.service';
 import { environment } from 'src/environments/environment';
-import { CKEditorModule } from 'ngx-ckeditor';
+import { CodemirrorModule } from '@ctrl/ngx-codemirror';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { LaboratoryService } from 'src/app/services/CRUD/LSLABCENTER/laboratory.service';
 
 @NgModule({
    imports: [CommonModule,
              TemplateRoutingModule,
-             CKEditorModule,
+             CodemirrorModule,
+             NgxSpinnerModule,
              FormsModule],
    declarations: [TemplateComponent],
    providers: [
                NgbModal,
-               TemplateService
+               TemplateService,
+               LaboratoryService
                ]
 })
 export class TemplateModule {}

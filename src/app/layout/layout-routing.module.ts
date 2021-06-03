@@ -39,10 +39,6 @@ const routes: Routes = [
             loadChildren: './CRUD/LSLABCENTER/Result/result.module#ResultModule'
          },
          {
-            path: 'result_param',
-            loadChildren: './CRUD/LSLABCENTER/ResultParam/resultparam.module#ResultParamModule'
-         },
-         {
             path: 'result_attachment',
             loadChildren: './CRUD/LSLABCENTER/ResultAttachment/resultattachment.module#ResultAttachmentModule'
          },

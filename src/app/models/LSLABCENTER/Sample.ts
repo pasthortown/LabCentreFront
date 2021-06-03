@@ -6,4 +6,9 @@ export class Sample {
    acquisition_date: Date;
    status: String;
    laboratory_id: number;
+   constructor() {
+      this.description = '';
+      this.acquisition_date = new Date();
+      this.status = '';
+   }
 }

@@ -1,6 +1,9 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)"  size = "medium" color = "#fff" type = "ball-spin" [fullScreen] = "true">
+   <p style="color: white" > Cargando información, por favor espere... </p>
+</ngx-spinner>
 <div class="row">
    <h1 class="col-12 text-right">
-      Template
+      Mis Plantillas
    </h1>
 </div>
 <div class="row">
@@ -16,12 +19,6 @@
          <div class="btn-group mr-2" role="group">
             <button type="button" title="Eliminar" class="btn btn-danger" (click)="deleteTemplate()"><i class="fas fa-trash"></i></button>
          </div>
-         <div class="btn-group mr-2" role="group">
-            <button type="button" title="BackUp" class="btn btn-dark" (click)="backup()"><i class="fas fa-download"></i></button>
-            <button type="button" title="Exportar CSV" class="btn btn-dark" (click)="toCSV()"><i class="fas fa-file-csv"></i></button>
-            <button type="button" title="Cargar" class="btn btn-dark" (click)="uploadInput.click()"><i class="fas fa-upload"></i></button>
-            <input [hidden]="true" type="file" class="form-control" #uploadInput (change)="decodeUploadFile($event)" accept=".json"/>
-         </div>
       </div>
    </div>
 </div>
@@ -31,15 +28,18 @@
          <thead>
             <tr>
                <th>Seleccionado</th>
-               <th>variables</th>
-               <th>body</th>
+               <th>Título</th>
+               <th>Orientación</th>
+               <th>Opciones</th>
             </tr>
          </thead>
          <tbody>
             <tr *ngFor="let template of templates" (click)="selectTemplate(template)">
                <td class="text-right"><span *ngIf="templateSelected === template" class="far fa-hand-point-right"></span></td>
-               <td>{{template.variables}}</td>
-               <td>{{template.body}}</td>
+               <td>{{template.title}}</td>
+               <td>{{template.orientation}}</td>
+               <th><button type="button" title="Descargar" class="btn btn-dark" (click)="downloadFile(template)"><span class="far fa-file-pdf"></span>&nbsp;Descargar</button></th>
+               
             </tr>
          </tbody>
       </table>
@@ -68,7 +68,7 @@
 </div>
 <ng-template #content let-modal>
    <div class="modal-header">
-      <h4 class="modal-title">Datos:</h4>
+      <h4 class="modal-title">Plantilla:</h4>
       <button type="button" class="close" (click)="modal.dismiss('Cross click')">
          <span>&times;</span>
       </button>
@@ -77,21 +77,49 @@
       <div class="row">
          <div class="col-12">
             <div class="form-group row">
-               <label for="variables" class="col-4 col-form-label">variables</label>
+               <label for="title" class="col-4 col-form-label">Título</label>
                <div class="col-8">
-                  <ck-editor id="variables" name="variables" skin="moono-lisa" [(ngModel)]="templateSelected.variables"></ck-editor>
+                  <input type="text" class="form-control" id="title" name="title" placeholder="Título" [(ngModel)]="templateSelected.title">
                </div>
             </div>
             <div class="form-group row">
-               <label for="body" class="col-4 col-form-label">body</label>
+               <label for="orientation" class="col-4 col-form-label">Orientación</label>
                <div class="col-8">
-                  <ck-editor id="body" name="body" skin="moono-lisa" [(ngModel)]="templateSelected.body"></ck-editor>
+                  <select class="form-control" id="orientation" name="orientation" [(ngModel)]="templateSelected.orientation">
+                     <option selected value="">Seleccione ...</option>
+                     <option value="HORIZONTAL">HORIZONTAL</option>
+                     <option value="VERTICAL">VERTICAL</option>
+                 </select>
+               </div>
+            </div>
+            <div class="form-group row">
+               <label for="body" class="col-12 col-form-label">Contenido</label>
+               <div class="col-12">
+                  <ngx-codemirror
+                     [(ngModel)]="templateSelected.body"
+                     [options]="{
+                        lineNumbers: true,
+                        theme: 'material',
+                        mode: 'markdown'
+                     }"
+                     id="body" name="body"
+                  >
+                  </ngx-codemirror>
+               </div>
+               <label for="body" class="col-12 col-form-label">Vista Previa</label>
+               <div class="col-12">
+                  <div class="row">
+                     <div class="col-1"></div>
+                     <div class="col-10 border" [innerHtml]="templateSelected.body"></div>
+                     <div class="col-1"></div>
+                  </div>
                </div>
             </div>
          </div>
       </div>
    </div>
    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="downloadFile(templateSelected)"><span class="far fa-file-pdf"></span>&nbsp;Descargar</button>
       <button type="button" class="btn btn-outline-success" (click)="modal.close('Guardar click')">Guardar</button>
       <button type="button" class="btn btn-outline-danger" (click)="modal.close('Cancelar click')">Cancelar</button>
    </div>

@@ -9,6 +9,12 @@ export class Laboratory {
    address: String;
    geolocation: any;
    constructor() {
+      this.ruc = '';
+      this.responsable_name = '';
+      this.main_contact_number = '';
+      this.secondary_contact_number = '';
+      this.description = '';
+      this.address = '';
       this.geolocation = { type: "Point", coordinates: [ 0, 0 ] };
    }
 }
