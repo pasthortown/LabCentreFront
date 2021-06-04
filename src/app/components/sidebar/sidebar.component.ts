@@ -18,6 +18,18 @@ export class SidebarComponent implements OnInit {
   pushRightClass: string;
   profileImg = 'assets/images/accounts.png';
 
+  show: any = {
+    my_laboratory: true,
+    my_templates: true,
+    patient: true,
+    laboratory: true,
+    laboratory_attachment: true,
+    laboratory_auth_user: true,
+    user_profile: true,
+    account_profile: true,
+    template: true,
+
+  }
   @Output() collapsedEvent = new EventEmitter<boolean>();
 
   constructor(private router: Router) {

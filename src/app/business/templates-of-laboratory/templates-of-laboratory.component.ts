@@ -144,7 +144,34 @@ export class TemplatesOfLaboratoryComponent implements OnInit {
     }
 
     downloadFile(template: Template) {
-      return template;
+      this.descargarPDF(template.body, template.title, template.orientation);
     }
+
+    descargarPDF(html: String, title: String, orientation: String) {
+      const params = {
+         ciudad: 'Quito',
+         fecha: new Date().toLocaleString(),
+         laboratory_id: this.laboratory.id,
+         codigo: '1',
+         nombre_comercial: 'LSYSTEMS',
+         propietario: 'Luis Alfonso Salazar Vaca',
+         representante_legal: 'Luis Alfonso Salazar Vaca',
+         direccion_establecimiento: 'Los Robles E14-16 y Cardos',
+         Registro: '1'};
+      this.templateDataService.download(html, title, orientation, true, this.buildQRData(params), params).then( r => {
+         const byteCharacters = atob(r);
+         const byteNumbers = new Array(byteCharacters.length);
+         for (let i = 0; i < byteCharacters.length; i++) {
+            byteNumbers[i] = byteCharacters.charCodeAt(i);
+         }
+         const byteArray = new Uint8Array(byteNumbers);
+         const blob = new Blob([byteArray], { type: 'application/pdf'});
+         saveAs(blob, title + '.pdf');
+      }).catch( e => { console.log(e); });
+   }
+
+   buildQRData(params: any): string {
+      return JSON.stringify(params);
+   }
 
 }

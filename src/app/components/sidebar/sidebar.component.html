@@ -13,43 +13,31 @@
 
 
                <!--LSLabCenter-->
-               <li>
+               <li *ngIf="show.my_laboratory">
                   <a [routerLink]="['/my-laboratory']" [routerLinkActive]="['router-link-active']" class="list-group-item">Mi Laboratorio</a>
                </li>
-               <li>
+               <li *ngIf="show.my_templates">
                   <a [routerLink]="['/my-templates']" [routerLinkActive]="['router-link-active']" class="list-group-item">Mis Plantillas</a>
                </li>
-               <li>
+               <li *ngIf="show.patient">
                   <a [routerLink]="['/patient']" [routerLinkActive]="['router-link-active']" class="list-group-item">Pacientes</a>
                </li>
-               <li>
-                  <a [routerLink]="['/sample']" [routerLinkActive]="['router-link-active']" class="list-group-item">Sample </a>
-               </li>
-               <li>
-                  <a [routerLink]="['/sample_param']" [routerLinkActive]="['router-link-active']" class="list-group-item">SampleParam </a>
-               </li>
-               <li>
-                  <a [routerLink]="['/result']" [routerLinkActive]="['router-link-active']" class="list-group-item">Result </a>
-               </li>
-               <li>
-                  <a [routerLink]="['/result_attachment']" [routerLinkActive]="['router-link-active']" class="list-group-item">ResultAttachment </a>
-               </li>
-               <li>
+               <li *ngIf="show.laboratory">
                   <a [routerLink]="['/laboratory']" [routerLinkActive]="['router-link-active']" class="list-group-item">Laboratorios</a>
                </li>
-               <li>
+               <li *ngIf="show.laboratory_attachment">
                   <a [routerLink]="['/laboratory_attachment']" [routerLinkActive]="['router-link-active']" class="list-group-item">Adjuntos por Laboratorio</a>
                </li>
-               <li>
+               <li *ngIf="show.laboratory_auth_user">
                   <a [routerLink]="['/laboratory_auth_user']" [routerLinkActive]="['router-link-active']" class="list-group-item">Usuarios por Laboratorio</a>
                </li>
-               <li>
+               <li *ngIf="show.user_profile">
                   <a [routerLink]="['/user_profile']" [routerLinkActive]="['router-link-active']" class="list-group-item">Perfiles de Usuario</a>
                </li>
-               <li>
+               <li *ngIf="show.account_profile">
                   <a [routerLink]="['/account-profile']" [routerLinkActive]="['router-link-active']" class="list-group-item">Perfiles</a>
                </li>
-               <li>
+               <li *ngIf="show.template">
                   <a [routerLink]="['/template']" [routerLinkActive]="['router-link-active']" class="list-group-item">Plantillas</a>
                </li>
             </ul>

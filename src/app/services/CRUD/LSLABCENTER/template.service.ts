@@ -79,6 +79,28 @@ export class TemplateService {
       }).catch( error => { this.handledError(error); });
    }
 
+   download(html: String, title: String, orientation: String, qr?: Boolean, qr_content?: String, params?: any): Promise<any> {
+      let data = null;
+      if(typeof qr != 'undefined') {
+         if(typeof params != 'undefined') {
+            data = {html: html, orientation: orientation, title: title, params: params, qr: qr, qr_content: qr_content};
+         } else {
+            data = {html: html, orientation: orientation, title: title, qr: qr, qr_content: qr_content};
+         }
+      } else {
+         if(typeof params != 'undefined') {
+            data = {html: html, orientation: orientation, title: title, params: params};
+         } else {
+            data = {html: html, orientation: orientation, title: title};   
+         }
+         
+      }
+      return this.http.post(this.url + 'download', JSON.stringify(data), this.options).toPromise()
+      .then( r => {
+         return r;
+      }).catch( error => { this.handledError(error); });
+   }
+
    handledError(error: any) {
       console.log(error);
       sessionStorage.clear();
