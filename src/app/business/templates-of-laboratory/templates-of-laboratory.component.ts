@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -25,12 +26,14 @@ export class TemplatesOfLaboratoryComponent implements OnInit {
     lastPage = 1;
     showDialog = false;
     recordsByPage = 5;
-    
+    sample_types: any[] = [];
   
     constructor(private modalService: NgbModal,
       private toastr: ToastrManager,
       private spinner: NgxSpinnerService,
-      private templateDataService: TemplateService) { }
+      private templateDataService: TemplateService) { 
+         this.sample_types = environment.tipo_muestras;
+      }
 
     ngOnInit() {
     }

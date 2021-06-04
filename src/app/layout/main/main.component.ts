@@ -16,7 +16,8 @@ export class MainComponent implements OnInit {
     patients: any[] = [];
     patientSelected: Patient = new Patient();
     show_search_results = false;
-
+    laboratory_id = 1;
+    
     constructor(
         private spinner: NgxSpinnerService,
         private modalService: NgbModal,

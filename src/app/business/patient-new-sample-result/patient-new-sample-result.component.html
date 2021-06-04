@@ -1,0 +1,36 @@
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card col-12">
+            <h5 class="card-title text-center mt-4">DATOS DE LA MUESTRA</h5>
+            <table class="table border-0">
+                <tbody>
+                  <tr>
+                    <th class="border-0 text-right">TIPO DE MUESTRA</th>
+                    <td class="border-0">
+                        <select class="form-control" id="sample_description" name="sample_description" [(ngModel)]="sample.description" (change)="getTemplates(sample.description, laboratory_id)">
+                            <option selected value="">Seleccione ...</option>
+                            <option *ngFor="let sample_type of sample_types" [value]="sample_type.type">{{sample_type.type}}</option>
+                        </select>
+                    </td>
+                    <th class="border-0 text-right">FECHA DE TOMA DE LA MUESTRA</th>
+                    <td class="border-0">
+                        <input type="date" class="form-control" id="acquisition_date" name="acquisition_date" placeholder="FECHA DE TOMA DE LA MUESTRA" [ngModel]="sample.acquisition_date | date:'y-MM-dd'" (ngModelChange)="sample.acquisition_date = $event">
+                    </td>
+                  </tr>
+                  <tr>
+                      <th class="border-0 text-right">ANÁLISIS REQUERIDO</th>
+                      <td class="border-0">
+                        <select class="form-control" id="result_required" name="result_required" [(ngModel)]="selected_template_id" (change)="selectTemplate(selected_template_id)">
+                            <option selected value="0">Seleccione ...</option>
+                            <option *ngFor="let template of templates" [value]="template.title">{{template.title}}</option>
+                        </select>
+                      </td>
+                      <th class="border-0"></th>
+                      <td class="border-0"></td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+

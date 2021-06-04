@@ -55,7 +55,7 @@
 <div class="row mt-5" *ngIf="patientSelected.id != 0">
     <div class="col-12">
         <div class="card col-12">
-            <h5 class="card-title text-center">DATOS DEL PACIENTE</h5>
+            <h5 class="card-title text-center mt-4">DATOS DEL PACIENTE</h5>
             <table class="table border-0">
                 <tbody>
                   <tr>
@@ -73,7 +73,7 @@
         </div>
     </div>
 </div>
-
+<app-patient-sample-result *ngIf="patientSelected.id != 0" [patient]="patientSelected" [laboratory_id]="laboratory_id"></app-patient-sample-result>
 
 
  <ng-template #new_patient_modal let-modal>

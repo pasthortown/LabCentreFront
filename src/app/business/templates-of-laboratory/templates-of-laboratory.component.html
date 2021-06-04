@@ -30,6 +30,7 @@
           <thead>
              <tr>
                 <th>Seleccionado</th>
+                <th>Tipo de Muestra</th>
                 <th>Título</th>
                 <th>Orientación</th>
                 <th>Opciones</th>
@@ -38,10 +39,10 @@
           <tbody>
              <tr *ngFor="let template of templates" (click)="selectTemplate(template)">
                 <td class="text-right"><span *ngIf="templateSelected === template" class="far fa-hand-point-right"></span></td>
+                <td>{{template.sample_description}}</td>
                 <td>{{template.title}}</td>
                 <td>{{template.orientation}}</td>
                 <th><button type="button" title="Descargar" class="btn btn-dark" (click)="downloadFile(template)"><span class="far fa-file-pdf"></span>&nbsp;Descargar</button></th>
-                
              </tr>
           </tbody>
        </table>
@@ -78,6 +79,15 @@
     <div class="modal-body">
        <div class="row">
           <div class="col-12">
+            <div class="form-group row">
+               <label for="title" class="col-4 col-form-label">Tipo de Muestra</label>
+               <div class="col-8">
+                  <select class="form-control" id="sample_description" name="sample_description" [(ngModel)]="templateSelected.sample_description">
+                     <option selected value="">Seleccione ...</option>
+                     <option *ngFor="let sample_type of sample_types" [value]="sample_type.type">{{sample_type.type}}</option>
+                  </select>
+               </div>
+            </div>
              <div class="form-group row">
                 <label for="title" class="col-4 col-form-label">Título</label>
                 <div class="col-8">

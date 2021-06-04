@@ -30,8 +30,15 @@ export class TemplateService {
       }).catch( error => { this.handledError(error); });
    }
 
+   get_by_sample_description(sample_description: String, laboratory_id: number): Promise<any> {
+      return this.http.get(this.url + 'by_sample_description?laboratory_id=' + laboratory_id.toString() + '&sample_description=' + sample_description, this.options).toPromise()
+      .then( r => {
+         return r;
+      }).catch( error => { this.handledError(error); });
+   }
+
    get_by_laboratory_id(laboratory_id: number): Promise<any> {
-      return this.http.get(this.url + 'template/by_laboratory_id?laboratory_id=' + laboratory_id.toString(), this.options).toPromise()
+      return this.http.get(this.url + 'by_laboratory_id?laboratory_id=' + laboratory_id.toString(), this.options).toPromise()
       .then( r => {
          return r;
       }).catch( error => { this.handledError(error); });
