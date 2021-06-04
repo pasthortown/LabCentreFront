@@ -6,7 +6,6 @@ import { SampleRoutingModule } from './sample-routing.module';
 import { SampleComponent } from './sample.component';
 import { SampleService } from 'src/app/services/CRUD/LSLABCENTER/sample.service';
 import { environment } from 'src/environments/environment';
-import { SampleParamService } from 'src/app/services/CRUD/LSLABCENTER/sampleparam.service';
 
 @NgModule({
    imports: [CommonModule,
@@ -15,7 +14,6 @@ import { SampleParamService } from 'src/app/services/CRUD/LSLABCENTER/samplepara
    declarations: [SampleComponent],
    providers: [
                NgbModal,
-               SampleParamService,
                SampleService
                ]
 })

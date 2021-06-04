@@ -31,14 +31,6 @@ const routes: Routes = [
             loadChildren: './CRUD/LSLABCENTER/Sample/sample.module#SampleModule'
          },
          {
-            path: 'sample_param',
-            loadChildren: './CRUD/LSLABCENTER/SampleParam/sampleparam.module#SampleParamModule'
-         },
-         {
-            path: 'result',
-            loadChildren: './CRUD/LSLABCENTER/Result/result.module#ResultModule'
-         },
-         {
             path: 'result_attachment',
             loadChildren: './CRUD/LSLABCENTER/ResultAttachment/resultattachment.module#ResultAttachmentModule'
          },

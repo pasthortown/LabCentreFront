@@ -98,9 +98,9 @@ export class ResultAttachmentComponent implements OnInit {
    toCSV() {
       this.result_attachmentDataService.get().then( r => {
          const backupData = r as ResultAttachment[];
-         let output = 'id;result_id;result_attachment_file_type;result_attachment_file_name;result_attachment_file\n';
+         let output = 'id;sample_id;result_attachment_file_type;result_attachment_file_name;result_attachment_file\n';
          backupData.forEach(element => {
-            output += element.id + ';' + element.result_id + ';' + element.result_attachment_file_type + ';' + element.result_attachment_file_name + ';' + element.result_attachment_file + '\n';
+            output += element.id + ';' + element.sample_id + ';' + element.result_attachment_file_type + ';' + element.result_attachment_file_name + ';' + element.result_attachment_file + '\n';
          });
          const blob = new Blob([output], { type: 'text/plain;charset=utf-8' });
          const fecha = new Date();

@@ -20,9 +20,9 @@
                   <tr>
                       <th class="border-0 text-right">ANÁLISIS REQUERIDO</th>
                       <td class="border-0">
-                        <select class="form-control" id="result_required" name="result_required" [(ngModel)]="selected_template_id" (change)="selectTemplate(selected_template_id)">
+                        <select class="form-control" id="result_required" name="result_required" [(ngModel)]="selected_template_id" (change)="selectTemplate()">
                             <option selected value="0">Seleccione ...</option>
-                            <option *ngFor="let template of templates" [value]="template.title">{{template.title}}</option>
+                            <option *ngFor="let template of templates" [value]="template.id">{{template.title}}</option>
                         </select>
                       </td>
                       <th class="border-0"></th>
@@ -33,4 +33,37 @@
         </div>
     </div>
 </div>
-
+<div class="row mt-4" *ngIf="selectedTemplate.id != 0">
+    <div class="col-12 text-center">
+        <button type="button" class="btn btn-outline-success" (click)="save_sample()">Guardar</button>
+    </div>
+</div>
+<div class="row mt-4" *ngIf="selectedTemplate.id != 0">
+    <div class="col-12">
+        <div class="card col-12">
+            <h5 class="card-title text-center mt-4">ANÁLISIS DE LA MUESTRA</h5>
+            <table class="table border-0 table-hover">
+                <tbody>
+                  <tr *ngFor="let sample_param of sample.sample_param">
+                    <th>{{sample_param.description}}</th>
+                    <td>
+                        <div class="input-group mb-3" *ngIf="sample_param.units != ''">
+                            <input *ngIf="sample_param.type == 'text'" type="text" class="form-control" id="value_text" name="value_text" placeholder="Valor" [(ngModel)]="sample_param.value_text">
+                            <input *ngIf="sample_param.type == 'double'" type="number" class="form-control" id="value_double" name="value_double" placeholder="Valor" [(ngModel)]="sample_param.value_double">
+                            <span class="input-group-text" id="basic-addon2">{{sample_param.units}}</span>
+                        </div>
+                        <input *ngIf="sample_param.type == 'text' && sample_param.units == ''" type="text" class="form-control" id="value_text" name="value_text" placeholder="Valor" [(ngModel)]="sample_param.value_text">
+                        <input *ngIf="sample_param.type == 'double' && sample_param.units == ''" type="number" class="form-control" id="value_double" name="value_double" placeholder="Valor" [(ngModel)]="sample_param.value_double">
+                    </td>
+                    <td [innerHtml]="sample_param.notes" *ngIf="sample_param.notes != ''"></td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+<div class="row mt-4" *ngIf="selectedTemplate.id != 0">
+    <div class="col-12 text-center">
+        <button type="button" class="btn btn-outline-success" (click)="save_sample()">Guardar</button>
+    </div>
+</div>

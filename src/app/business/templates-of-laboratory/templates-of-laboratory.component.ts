@@ -73,7 +73,7 @@ export class TemplatesOfLaboratoryComponent implements OnInit {
     }
 
     editTemplate(content) {
-      if (typeof this.templateSelected.id === 'undefined') {
+      if (typeof this.templateSelected.id === 'undefined' || this.templateSelected.id === 0) {
          this.toastr.errorToastr('Debe seleccionar un registro.', 'Error');
          return;
       }
@@ -81,7 +81,7 @@ export class TemplatesOfLaboratoryComponent implements OnInit {
     }
 
     deleteTemplate() {
-      if (typeof this.templateSelected.id === 'undefined') {
+      if (typeof this.templateSelected.id === 'undefined' || this.templateSelected.id === 0) {
          this.toastr.errorToastr('Debe seleccionar un registro.', 'Error');
          return;
       }
@@ -131,7 +131,7 @@ export class TemplatesOfLaboratoryComponent implements OnInit {
     openDialog(content) {
       this.modalService.open(content, { centered: true , size: 'lg' }).result.then(( response => {
          if ( response === 'Guardar click' ) {
-            if (typeof this.templateSelected.id === 'undefined') {
+            if (typeof this.templateSelected.id === 'undefined' || this.templateSelected.id === 0) {
                this.templateDataService.post(this.templateSelected).then( r => {
                   this.toastr.successToastr('Datos guardados satisfactoriamente.', 'Nuevo');
                   this.getTemplates();

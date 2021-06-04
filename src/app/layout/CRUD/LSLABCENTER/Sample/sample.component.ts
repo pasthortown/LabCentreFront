@@ -4,7 +4,6 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 import { saveAs } from 'file-saver/FileSaver';
 import { SampleService } from 'src/app/services/CRUD/LSLABCENTER/sample.service';
 import { Sample } from 'src/app/models/LSLABCENTER/Sample';
-import { SampleParamService } from 'src/app/services/CRUD/LSLABCENTER/sampleparam.service';
 import { SampleParam } from 'src/app/models/LSLABCENTER/SampleParam';
 
 @Component({
