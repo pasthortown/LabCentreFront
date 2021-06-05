@@ -3,15 +3,18 @@ import { PatientNewSampleResultComponent } from './patient-new-sample-result.com
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TemplateService } from 'src/app/services/CRUD/LSLABCENTER/template.service';
+import { ResultAttachmentService } from 'src/app/services/CRUD/LSLABCENTER/resultattachment.service';
 import { SampleService } from 'src/app/services/CRUD/LSLABCENTER/sample.service';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   declarations: [PatientNewSampleResultComponent],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    NgxSpinnerModule
   ],
   exports: [PatientNewSampleResultComponent],
-  providers: [TemplateService, SampleService]
+  providers: [TemplateService, SampleService, ResultAttachmentService]
 })
 export class PatientNewSampleResultModule { }

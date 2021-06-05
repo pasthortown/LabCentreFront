@@ -30,6 +30,13 @@ export class SampleService {
       }).catch( error => { this.handledError(error); });
    }
 
+   look_for_pending_work(laboratory_id: number) {
+      return this.http.get(this.url + 'look_for_pending_work?laboratory_id=' + laboratory_id.toString(), this.options).toPromise()
+      .then( r => {
+         return r;
+      }).catch( error => { this.handledError(error);  });
+   }
+
    get_paginate(size: number, page: number): Promise<any> {
       return this.http.get(this.url + 'paginate?size=' + size.toString() + '&page=' + page.toString(), this.options).toPromise()
       .then( r => {

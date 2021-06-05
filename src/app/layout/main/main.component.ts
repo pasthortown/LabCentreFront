@@ -17,14 +17,25 @@ export class MainComponent implements OnInit {
     patientSelected: Patient = new Patient();
     show_search_results = false;
     laboratory_id = 1;
-    
+    patient_to_sample: any = null;
+
     constructor(
         private spinner: NgxSpinnerService,
         private modalService: NgbModal,
         private toastr: ToastrManager,
         private patientDataService: PatientService) {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.reset();
+    }
+
+    reset() {
+        this.search_criteria = '';
+        this.patients = [];
+        this.patientSelected = new Patient();
+        this.show_search_results = false;
+        this.laboratory_id = 1; 
+    }
 
     wait_for_search(event) {
         this.show_search_results = false;
@@ -34,12 +45,18 @@ export class MainComponent implements OnInit {
         }
     }
 
+    sample_taked(event) {
+        this.reset();
+    }
+
     search_patient() {
         this.patients = [];
         this.patientSelected = new Patient();
         this.show_search_results = false;
+        this.spinner.show();
         this.patientDataService.search(this.search_criteria).then( r => {
             this.patients = r as any[];
+            this.spinner.hide();
             this.show_search_results = true;
         }).catch( e => { console.log(e); });
     }
@@ -60,15 +77,19 @@ export class MainComponent implements OnInit {
 
     save_data(): void {
         if (typeof this.patientSelected.id === 'undefined' || this.patientSelected.id == 0) {
+           this.spinner.show();
            this.patientDataService.post(this.patientSelected.patient_form.value).then( r => {
               this.toastr.successToastr('Datos guardados satisfactoriamente.', 'Nuevo');
+              this.spinner.hide();
               this.search_criteria = this.patientSelected.patient_form.value.identification;
               this.search_patient();
            }).catch( e => console.log(e) );
         } else {
            let patient_data = this.patientSelected.patient_form.value;
            patient_data.id = this.patientSelected.id;
+           this.spinner.show();
            this.patientDataService.put(patient_data).then( r => {
+              this.spinner.hide();
               this.toastr.successToastr('Registro actualizado satisfactoriamente.', 'Actualizar');
               this.search_criteria = this.patientSelected.patient_form.value.identification;
               this.search_patient();
@@ -85,6 +106,7 @@ export class MainComponent implements OnInit {
     }
 
     selectPatient(patient: any) {
+        this.patient_to_sample = patient;
         this.patientSelected = new Patient();
         this.patientSelected.id = patient.id;
         this.patientSelected.patient_form.get('identification').setValue(patient.identification);

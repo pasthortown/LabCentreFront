@@ -12,6 +12,10 @@ const routes: Routes = [
             redirectTo: 'main'
          },
          {
+            path: 'in-course',
+            loadChildren: './in-course/in-course-page.module#InCoursePageModule'
+         },
+         {
             path: 'main',
             loadChildren: './main/main.module#MainModule'
          },

@@ -1,4 +1,3 @@
-
 <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)"  size = "medium" color = "#fff" type = "ball-spin" [fullScreen] = "true">
     <p style="color: white" > Cargando información, por favor espere... </p>
 </ngx-spinner>
@@ -73,7 +72,7 @@
         </div>
     </div>
 </div>
-<app-patient-sample-result *ngIf="patientSelected.id != 0" [patient]="patientSelected" [laboratory_id]="laboratory_id"></app-patient-sample-result>
+<app-patient-sample-result *ngIf="patientSelected.id != 0" [patient]="patient_to_sample" [laboratory_id]="laboratory_id" (sample_taked)="sample_taked($event)"></app-patient-sample-result>
 
 
  <ng-template #new_patient_modal let-modal>

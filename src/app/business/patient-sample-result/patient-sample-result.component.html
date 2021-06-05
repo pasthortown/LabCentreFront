@@ -3,7 +3,7 @@
         <ngb-tabset #mainOptions>
             <ngb-tab title="Nueva Muestra" id="patient_new_sample">
                 <ng-template ngbTabContent>
-                    <app-patient-new-sample-result [patient]="patient" [laboratory_id]="laboratory_id"></app-patient-new-sample-result>
+                    <app-patient-new-sample-result [patient]="patient" [laboratory_id]="laboratory_id" [sample]="sample" (sample_taked)="new_sample_taked($event)"></app-patient-new-sample-result>
                 </ng-template>
             </ngb-tab>
             <ngb-tab title="Historial" id="patient_history">

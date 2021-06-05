@@ -1,3 +1,6 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)"  size = "medium" color = "#fff" type = "ball-spin" [fullScreen] = "true">
+    <p style="color: white" > Cargando información, por favor espere... </p>
+</ngx-spinner>
 <div class="row mt-4">
     <div class="col-12">
         <div class="card col-12">
@@ -7,23 +10,26 @@
                   <tr>
                     <th class="border-0 text-right">TIPO DE MUESTRA</th>
                     <td class="border-0">
-                        <select class="form-control" id="sample_description" name="sample_description" [(ngModel)]="sample.description" (change)="getTemplates(sample.description, laboratory_id)">
+                        <select *ngIf="is_new" class="form-control" id="sample_description" name="sample_description" [(ngModel)]="sample.description" (change)="getTemplates(sample.description, laboratory_id)">
                             <option selected value="">Seleccione ...</option>
                             <option *ngFor="let sample_type of sample_types" [value]="sample_type.type">{{sample_type.type}}</option>
                         </select>
+                        <strong *ngIf="!is_new">{{sample.description}}</strong>
                     </td>
                     <th class="border-0 text-right">FECHA DE TOMA DE LA MUESTRA</th>
                     <td class="border-0">
-                        <input type="date" class="form-control" id="acquisition_date" name="acquisition_date" placeholder="FECHA DE TOMA DE LA MUESTRA" [ngModel]="sample.acquisition_date | date:'y-MM-dd'" (ngModelChange)="sample.acquisition_date = $event">
+                        <input type="date" *ngIf="is_new" class="form-control" id="acquisition_date" name="acquisition_date" placeholder="FECHA DE TOMA DE LA MUESTRA" [ngModel]="sample.acquisition_date | date:'y-MM-dd'" (ngModelChange)="sample.acquisition_date = $event">
+                        <strong *ngIf="!is_new">{{sample.acquisition_date | date:'y-MM-dd'}}</strong>
                     </td>
                   </tr>
                   <tr>
                       <th class="border-0 text-right">ANÁLISIS REQUERIDO</th>
                       <td class="border-0">
-                        <select class="form-control" id="result_required" name="result_required" [(ngModel)]="selected_template_id" (change)="selectTemplate()">
+                        <select class="form-control" id="result_required" name="result_required" [(ngModel)]="selected_template_id" (change)="selectTemplate()" *ngIf="is_new">
                             <option selected value="0">Seleccione ...</option>
                             <option *ngFor="let template of templates" [value]="template.id">{{template.title}}</option>
                         </select>
+                        <strong *ngIf="!is_new">{{sample.analysys_title}}</strong>
                       </td>
                       <th class="border-0"></th>
                       <td class="border-0"></td>
@@ -33,12 +39,15 @@
         </div>
     </div>
 </div>
-<div class="row mt-4" *ngIf="selectedTemplate.id != 0">
+<div class="row mt-4" *ngIf="selectedTemplate.id != 0 || !is_new">
     <div class="col-12 text-center">
-        <button type="button" class="btn btn-outline-success" (click)="save_sample()">Guardar</button>
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-outline-primary" (click)="save_sample('En Proceso')">Guardar como Pendiente</button>
+            <button type="button" class="btn btn-outline-success" (click)="save_sample('Impreso')">Guardar como Finalizado</button>
+        </div>
     </div>
 </div>
-<div class="row mt-4" *ngIf="selectedTemplate.id != 0">
+<div class="row mt-4" *ngIf="selectedTemplate.id != 0 || !is_new">
     <div class="col-12">
         <div class="card col-12">
             <h5 class="card-title text-center mt-4">ANÁLISIS DE LA MUESTRA</h5>
@@ -48,12 +57,12 @@
                     <th>{{sample_param.description}}</th>
                     <td>
                         <div class="input-group mb-3" *ngIf="sample_param.units != ''">
-                            <input *ngIf="sample_param.type == 'text'" type="text" class="form-control" id="value_text" name="value_text" placeholder="Valor" [(ngModel)]="sample_param.value_text">
-                            <input *ngIf="sample_param.type == 'double'" type="number" class="form-control" id="value_double" name="value_double" placeholder="Valor" [(ngModel)]="sample_param.value_double">
+                            <input *ngIf="sample_param.type == 'text'" type="text" class="form-control" name="value_text" placeholder="Valor" [(ngModel)]="sample_param.value_text">
+                            <input *ngIf="sample_param.type == 'double'" type="number" class="form-control" name="value_double" placeholder="Valor" [(ngModel)]="sample_param.value_double">
                             <span class="input-group-text" id="basic-addon2">{{sample_param.units}}</span>
                         </div>
-                        <input *ngIf="sample_param.type == 'text' && sample_param.units == ''" type="text" class="form-control" id="value_text" name="value_text" placeholder="Valor" [(ngModel)]="sample_param.value_text">
-                        <input *ngIf="sample_param.type == 'double' && sample_param.units == ''" type="number" class="form-control" id="value_double" name="value_double" placeholder="Valor" [(ngModel)]="sample_param.value_double">
+                        <input *ngIf="sample_param.type == 'text' && sample_param.units == ''" type="text" class="form-control" name="value_text" placeholder="Valor" [(ngModel)]="sample_param.value_text">
+                        <input *ngIf="sample_param.type == 'double' && sample_param.units == ''" type="number" class="form-control" name="value_double" placeholder="Valor" [(ngModel)]="sample_param.value_double">
                     </td>
                     <td [innerHtml]="sample_param.notes" *ngIf="sample_param.notes != ''"></td>
                   </tr>
@@ -62,8 +71,9 @@
         </div>
     </div>
 </div>
-<div class="row mt-4" *ngIf="selectedTemplate.id != 0">
+<div class="row mt-4" *ngIf="selectedTemplate.id != 0 || !is_new">
     <div class="col-12 text-center">
-        <button type="button" class="btn btn-outline-success" (click)="save_sample()">Guardar</button>
+        <button type="button" class="btn btn-outline-primary" (click)="save_sample('En Proceso')">Guardar como Pendiente</button>
+        <button type="button" class="btn btn-outline-success" (click)="save_sample('Impreso')">Guardar como Finalizado</button>
     </div>
 </div>

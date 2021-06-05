@@ -155,12 +155,7 @@ export class TemplatesOfLaboratoryComponent implements OnInit {
          ciudad: 'Quito',
          fecha: new Date().toLocaleString(),
          laboratory_id: this.laboratory.id,
-         codigo: '1',
-         nombre_comercial: 'LSYSTEMS',
-         propietario: 'Luis Alfonso Salazar Vaca',
-         representante_legal: 'Luis Alfonso Salazar Vaca',
-         direccion_establecimiento: 'Los Robles E14-16 y Cardos',
-         Registro: '1'};
+      };
       this.templateDataService.download(html, title, orientation, true, this.buildQRData(params), params).then( r => {
          const byteCharacters = atob(r);
          const byteNumbers = new Array(byteCharacters.length);

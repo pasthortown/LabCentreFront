@@ -86,6 +86,14 @@ export class TemplateService {
       }).catch( error => { this.handledError(error); });
    }
 
+   print_sample_result(qr: boolean, params: any): Promise<any> {
+      let data = {params: params, qr: qr};
+      return this.http.post(this.url + 'print_sample_result', JSON.stringify(data), this.options).toPromise()
+      .then( r => {
+         return r;
+      }).catch( error => { this.handledError(error); });
+   }
+
    download(html: String, title: String, orientation: String, qr?: Boolean, qr_content?: String, params?: any): Promise<any> {
       let data = null;
       if(typeof qr != 'undefined') {

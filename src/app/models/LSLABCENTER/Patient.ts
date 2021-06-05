@@ -78,4 +78,5 @@ export class Patient {
       let age = (now - born_date) / (365*24*60*60*1000);
       this.age = Math.floor(age);
    }
+   
 }

@@ -1,0 +1,36 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)"  size = "medium" color = "#fff" type = "ball-spin" [fullScreen] = "true">
+    <p style="color: white" > Cargando información, por favor espere... </p>
+</ngx-spinner>
+<div class="row">
+    <h5 class="col-12">Muestras Pendientes de Analizar</h5>
+    <div class="col-12">
+        <select class="form-control" id="result_required" name="result_required" [(ngModel)]="selected_sample_id" (change)="selectSample()">
+            <option selected value="0">Seleccione ...</option>
+            <option *ngFor="let work of pending_works" [value]="work.sample.id">{{work.sample.acquisition_date | date: 'y-MM-dd'}} - {{work.sample.analysys_title}} - {{work.patient.fullname}}</option>
+        </select>
+    </div>
+</div>
+
+<div class="row mt-5" *ngIf="patient_selected.id != 0">
+    <div class="col-12">
+        <div class="card col-12">
+            <h5 class="card-title text-center mt-4">DATOS DEL PACIENTE</h5>
+            <table class="table border-0">
+                <tbody>
+                  <tr>
+                    <th class="border-0 text-right">NOMBRE</th>
+                    <td class="border-0">{{patient_selected.fullname}}</td>
+                    <th class="border-0 text-right">IDENTIFICACIÓN</th>
+                    <td class="border-0">{{patient_selected.identification}}</td>
+                  </tr>
+                  <tr>
+                    <th class="border-0 text-right">EDAD</th>
+                    <td class="border-0" colspan="3">{{patient_selected.age}} AÑOS</td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+
+<app-patient-new-sample-result *ngIf="selected_sample_id != 0" [is_new]="false" [patient]="patient_selected" [laboratory_id]="laboratory_id" [sample]="sample_selected" (sample_taked)="sample_saved($event)"></app-patient-new-sample-result>
