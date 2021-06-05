@@ -11,6 +11,19 @@ import { User } from 'src/app/models/profile/User';
 export class SidebarComponent implements OnInit {
   @Input('profile_picture') profile_picture = new ProfilePicture();
   @Input('user') user = new User();
+  @Input('show_menu') show_menu: any = {
+    show_my_data: false,
+    send_results: false,
+    my_laboratory: false,
+    my_templates: false,
+    patient: false,
+    laboratory: false,
+    laboratory_attachment: false,
+    laboratory_auth_user: false,
+    user_profile: false,
+    account_profile: false,
+    template: false
+  }
 
   isActive: boolean;
   collapsed: boolean;
@@ -18,18 +31,6 @@ export class SidebarComponent implements OnInit {
   pushRightClass: string;
   profileImg = 'assets/images/accounts.png';
 
-  show: any = {
-    my_laboratory: true,
-    my_templates: true,
-    patient: true,
-    laboratory: true,
-    laboratory_attachment: true,
-    laboratory_auth_user: true,
-    user_profile: true,
-    account_profile: true,
-    template: true,
-
-  }
   @Output() collapsedEvent = new EventEmitter<boolean>();
 
   constructor(private router: Router) {

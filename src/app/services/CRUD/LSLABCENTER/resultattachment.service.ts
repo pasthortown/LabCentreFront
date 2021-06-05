@@ -30,6 +30,20 @@ export class ResultAttachmentService {
       }).catch( error => { this.handledError(error); });
    }
 
+   get_by_sample_id(sample_id: number): Promise<any> {
+      return this.http.get(this.url + 'get_by_sample_id?sample_id=' + sample_id.toString(), this.options).toPromise()
+      .then( r => {
+         return r;
+      }).catch( error => { this.handledError(error);  });
+   }
+
+   post_by_sample_id(resultattachment: ResultAttachment): Promise<any> {
+      return this.http.post(this.url + 'post_by_sample_id', JSON.stringify(resultattachment), this.options).toPromise()
+      .then( r => {
+         return r;
+      }).catch( error => { this.handledError(error); });
+   }
+
    get_paginate(size: number, page: number): Promise<any> {
       return this.http.get(this.url + 'paginate?size=' + size.toString() + '&page=' + page.toString(), this.options).toPromise()
       .then( r => {
@@ -60,6 +74,14 @@ export class ResultAttachmentService {
 
    put(resultattachment: ResultAttachment): Promise<any> {
       return this.http.put(this.url, JSON.stringify(resultattachment), this.options).toPromise()
+      .then( r => {
+         return r;
+      }).catch( error => { this.handledError(error); });
+   }
+
+   send(patient: any, sample: any): Promise<any> {
+      let data = {patient: patient, sample: sample};
+      return this.http.post(this.url + 'send', JSON.stringify(data), this.options).toPromise()
       .then( r => {
          return r;
       }).catch( error => { this.handledError(error); });

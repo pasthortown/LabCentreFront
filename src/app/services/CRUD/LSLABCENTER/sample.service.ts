@@ -30,7 +30,21 @@ export class SampleService {
       }).catch( error => { this.handledError(error); });
    }
 
-   look_for_pending_work(laboratory_id: number) {
+   look_for_history_work(patient_id: number, laboratory_id: number): Promise<any> {
+      return this.http.get(this.url + 'look_for_history_work?patient_id=' + patient_id.toString() + '&laboratory_id=' + laboratory_id.toString(), this.options).toPromise()
+      .then( r => {
+         return r;
+      }).catch( error => { this.handledError(error);  });
+   }
+
+   look_for_send_documents(laboratory_id: number): Promise<any> {
+      return this.http.get(this.url + 'look_for_send_documents?laboratory_id=' + laboratory_id.toString(), this.options).toPromise()
+      .then( r => {
+         return r;
+      }).catch( error => { this.handledError(error);  });
+   }
+
+   look_for_pending_work(laboratory_id: number): Promise<any> {
       return this.http.get(this.url + 'look_for_pending_work?laboratory_id=' + laboratory_id.toString(), this.options).toPromise()
       .then( r => {
          return r;

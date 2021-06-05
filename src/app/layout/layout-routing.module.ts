@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthAdminGuard } from '../components/guard/auth-admin.guard';
+import { AuthLabAdminGuard } from '../components/guard/auth-lab-admin.guard';
 import { LayoutComponent } from './layout.component';
 
 const routes: Routes = [
@@ -10,6 +12,11 @@ const routes: Routes = [
          {
             path: '',
             redirectTo: 'main'
+         },
+         {
+            path: 'send-documents',
+            loadChildren: './send-documents/send-documents-page.module#SendDocumentsPageModule',
+            canActivate: [AuthLabAdminGuard, AuthAdminGuard]
          },
          {
             path: 'in-course',
@@ -28,47 +35,58 @@ const routes: Routes = [
 
          {
             path: 'patient',
-            loadChildren: './CRUD/LSLABCENTER/Patient/patient.module#PatientModule'
+            loadChildren: './CRUD/LSLABCENTER/Patient/patient.module#PatientModule',
+            canActivate: [AuthAdminGuard]
          },
          {
             path: 'sample',
-            loadChildren: './CRUD/LSLABCENTER/Sample/sample.module#SampleModule'
+            loadChildren: './CRUD/LSLABCENTER/Sample/sample.module#SampleModule',
+            canActivate: [AuthAdminGuard]
          },
          {
             path: 'result_attachment',
-            loadChildren: './CRUD/LSLABCENTER/ResultAttachment/resultattachment.module#ResultAttachmentModule'
+            loadChildren: './CRUD/LSLABCENTER/ResultAttachment/resultattachment.module#ResultAttachmentModule',
+            canActivate: [AuthAdminGuard]
          },
          {
             path: 'laboratory',
-            loadChildren: './CRUD/LSLABCENTER/Laboratory/laboratory.module#LaboratoryModule'
+            loadChildren: './CRUD/LSLABCENTER/Laboratory/laboratory.module#LaboratoryModule',
+            canActivate: [AuthAdminGuard]
          },
          {
             path: 'laboratory_attachment',
-            loadChildren: './CRUD/LSLABCENTER/LaboratoryAttachment/laboratoryattachment.module#LaboratoryAttachmentModule'
+            loadChildren: './CRUD/LSLABCENTER/LaboratoryAttachment/laboratoryattachment.module#LaboratoryAttachmentModule',
+            canActivate: [AuthAdminGuard]
          },
          {
             path: 'laboratory_auth_user',
-            loadChildren: './CRUD/LSLABCENTER/LaboratoryAuthUser/laboratoryauthuser.module#LaboratoryAuthUserModule'
+            loadChildren: './CRUD/LSLABCENTER/LaboratoryAuthUser/laboratoryauthuser.module#LaboratoryAuthUserModule',
+            canActivate: [AuthAdminGuard]
          },
          {
             path: 'user_profile',
-            loadChildren: './CRUD/LSLABCENTER/UserProfile/userprofile.module#UserProfileModule'
+            loadChildren: './CRUD/LSLABCENTER/UserProfile/userprofile.module#UserProfileModule',
+            canActivate: [AuthAdminGuard]
          },
          {
             path: 'account-profile',
-            loadChildren: './CRUD/LSLABCENTER/Profile/profile.module#ProfileModule'
+            loadChildren: './CRUD/LSLABCENTER/Profile/profile.module#ProfileModule',
+            canActivate: [AuthAdminGuard]
          },
          {
             path: 'template',
-            loadChildren: './CRUD/LSLABCENTER/Template/template.module#TemplateModule'
+            loadChildren: './CRUD/LSLABCENTER/Template/template.module#TemplateModule',
+            canActivate: [AuthAdminGuard]
          },
          {
             path: 'my-laboratory',
-            loadChildren: './my-laboratory/my-laboratory-page.module#MyLaboratoryPageModule'
+            loadChildren: './my-laboratory/my-laboratory-page.module#MyLaboratoryPageModule',
+            canActivate: [AuthLabAdminGuard]
          },
          {
             path: 'my-templates',
-            loadChildren: './my-templates/my-templates-page.module#MyTemplatesPageModule'
+            loadChildren: './my-templates/my-templates-page.module#MyTemplatesPageModule',
+            canActivate: [AuthLabAdminGuard]
          },
          {
             path: 'blank',
@@ -88,6 +106,7 @@ const routes: Routes = [
 
 @NgModule({
    imports: [RouterModule.forChild(routes)],
-   exports: [RouterModule]
+   exports: [RouterModule],
+   providers: [AuthAdminGuard, AuthLabAdminGuard]
 })
 export class LayoutRoutingModule {}

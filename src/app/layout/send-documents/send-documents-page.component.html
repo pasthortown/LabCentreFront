@@ -1,0 +1,40 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)"  size = "medium" color = "#fff" type = "ball-spin" [fullScreen] = "true">
+    <p style="color: white" > Cargando información, por favor espere... </p>
+</ngx-spinner>
+<div class="row">
+   <h1 class="col-12 text-right">
+      Entrega de Resultados
+   </h1>
+</div>
+<div class="row">
+   <div class="col-12">
+      <table class="table table-hover mt-2">
+         <thead>
+            <tr>
+               <th>Seleccionado</th>
+               <th>Paciente</th>
+               <th>Fecha de Toma de Muestra</th>
+               <th>Análisis</th>
+               <th>Opciones</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr *ngFor="let work_to_send of works_to_send" (click)="sample_selected = work_to_send.sample">
+               <td class="text-right"><span *ngIf="sample_selected === work_to_send.sample" class="far fa-hand-point-right"></span></td>
+               <td>{{work_to_send.patient.identification}} - {{work_to_send.patient.fullname}}</td>
+               <td>{{work_to_send.sample.acquisition_date | date: 'y-MM-dd'}}</td>
+               <td>{{work_to_send.sample.analysys_title}}</td>
+               <td>
+                 <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-outline-danger" (click)="print_again(work_to_send)"><i class="far fa-file-pdf"></i>&nbsp;Volver a Generar</button>
+                    <button type="button" class="btn btn-outline-dark" (click)="print(work_to_send)"><i class="far fa-file-pdf"></i>&nbsp;Imprimir Actual</button>
+                    <button type="button" class="btn btn-outline-primary" (click)="uploadInput.click()"><i class="fas fa-camera-retro"></i>&nbsp;Cargar Firmado</button>
+                    <button type="button" class="btn btn-outline-success" (click)="send(work_to_send)"><i class="fas fa-envelope-open-text"></i>&nbsp;Enviar</button>
+                 </div>
+               </td>
+            </tr>
+         </tbody>
+      </table>
+   </div>
+</div>
+<input [hidden]="true" type="file" class="form-control" #uploadInput (change)="decodeUploadFile($event)" accept="*.*"/>

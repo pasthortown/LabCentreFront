@@ -4,9 +4,12 @@
          <i class="fas fa-concierge-bell"></i>&nbsp; <span>Atención a Pacientes</span>
       </a>
       <a [routerLink]="['/in-course']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-         <i class="fas fa-diagnoses"></i>&nbsp; <span>Trabajo Pendiente</span>
+         <i class="fas fa-diagnoses"></i>&nbsp; <span>Análisis Pendientes</span>
       </a>
-      <div class="nested-menu">
+      <a *ngIf="show_menu.send_results" [routerLink]="['/send-documents']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+         <i class="far fa-share-square"></i>&nbsp; <span>Entrega de Resultados</span>
+      </a>
+      <div class="nested-menu" *ngIf="show_menu.show_my_data">
          <a class="list-group-item" (click)="addExpandClass('bdd lslabcenter')">
             <span class="fas fa-database"></span>&nbsp;Mis Datos
          </a>
@@ -14,31 +17,31 @@
             <ul class="submenu">
 
                <!--LSLabCenter-->
-               <li *ngIf="show.my_laboratory">
+               <li *ngIf="show_menu.my_laboratory">
                   <a [routerLink]="['/my-laboratory']" [routerLinkActive]="['router-link-active']" class="list-group-item">Mi Laboratorio</a>
                </li>
-               <li *ngIf="show.my_templates">
+               <li *ngIf="show_menu.my_templates">
                   <a [routerLink]="['/my-templates']" [routerLinkActive]="['router-link-active']" class="list-group-item">Mis Plantillas</a>
                </li>
-               <li *ngIf="show.patient">
+               <li *ngIf="show_menu.patient">
                   <a [routerLink]="['/patient']" [routerLinkActive]="['router-link-active']" class="list-group-item">Pacientes</a>
                </li>
-               <li *ngIf="show.laboratory">
+               <li *ngIf="show_menu.laboratory">
                   <a [routerLink]="['/laboratory']" [routerLinkActive]="['router-link-active']" class="list-group-item">Laboratorios</a>
                </li>
-               <li *ngIf="show.laboratory_attachment">
+               <li *ngIf="show_menu.laboratory_attachment">
                   <a [routerLink]="['/laboratory_attachment']" [routerLinkActive]="['router-link-active']" class="list-group-item">Adjuntos por Laboratorio</a>
                </li>
-               <li *ngIf="show.laboratory_auth_user">
+               <li *ngIf="show_menu.laboratory_auth_user">
                   <a [routerLink]="['/laboratory_auth_user']" [routerLinkActive]="['router-link-active']" class="list-group-item">Usuarios por Laboratorio</a>
                </li>
-               <li *ngIf="show.user_profile">
+               <li *ngIf="show_menu.user_profile">
                   <a [routerLink]="['/user_profile']" [routerLinkActive]="['router-link-active']" class="list-group-item">Perfiles de Usuario</a>
                </li>
-               <li *ngIf="show.account_profile">
+               <li *ngIf="show_menu.account_profile">
                   <a [routerLink]="['/account-profile']" [routerLinkActive]="['router-link-active']" class="list-group-item">Perfiles</a>
                </li>
-               <li *ngIf="show.template">
+               <li *ngIf="show_menu.template">
                   <a [routerLink]="['/template']" [routerLinkActive]="['router-link-active']" class="list-group-item">Plantillas</a>
                </li>
             </ul>

@@ -32,6 +32,7 @@
             <tr>
                <th>Seleccionado</th>
                <th>RUC</th>
+               <th>Registro</th>
                <th>Nombre Comercial</th>
                <th>Dirección</th>
                <th>Nombre de Responsable</th>
@@ -42,6 +43,7 @@
             <tr *ngFor="let laboratory of laboratories" (click)="selectLaboratory(laboratory)">
                <td class="text-right"><span *ngIf="laboratorySelected === laboratory" class="far fa-hand-point-right"></span></td>
                <td>{{laboratory.ruc}}</td>
+               <td>{{laboratory.register}}</td>
                <td>{{laboratory.description}}</td>
                <td>{{laboratory.address}}</td>
                <td>{{laboratory.responsable_name}}</td>
@@ -86,6 +88,12 @@
                <label for="description" class="col-4 col-form-label">Número de RUC</label>
                <div class="col-8">
                   <input type="text" class="form-control" id="ruc" name="ruc" placeholder="Número de RUC" [(ngModel)]="laboratorySelected.ruc">
+               </div>
+            </div>
+            <div class="form-group row">
+               <label for="description" class="col-4 col-form-label">Número de Registro</label>
+               <div class="col-8">
+                  <input type="text" class="form-control" id="register" name="register" placeholder="Número de Registro" [(ngModel)]="laboratorySelected.register">
                </div>
             </div>
             <div class="form-group row">

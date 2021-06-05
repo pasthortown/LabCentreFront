@@ -1,1 +1,32 @@
-<p>patient-history-sample-result works!</p>
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)"  size = "medium" color = "#fff" type = "ball-spin" [fullScreen] = "true">
+   <p style="color: white" > Cargando información, por favor espere... </p>
+</ngx-spinner>
+<div class="row">
+    <div class="col-12">
+       <table class="table table-hover mt-2">
+          <thead>
+             <tr>
+                <th>Seleccionado</th>
+                <th>Fecha de Toma de Muestra</th>
+                <th>Análisis</th>
+                <th>Estado</th>
+                <th>Opciones</th>
+             </tr>
+          </thead>
+          <tbody>
+             <tr *ngFor="let work_history of works_history" (click)="sample_selected = work_history.sample">
+                <td class="text-right"><span *ngIf="sample_selected === work_history.sample" class="far fa-hand-point-right"></span></td>
+                <td>{{work_history.sample.acquisition_date | date: 'y-MM-dd'}}</td>
+                <td>{{work_history.sample.analysys_title}}</td>
+                <td>{{work_history.sample.status}}</td>
+                <td>
+                  <div class="btn-group" role="group">
+                     <button [disabled]="work_history.sample.status != 'Entregado'" type="button" class="btn btn-outline-dark" (click)="print(work_history)"><i class="far fa-file-pdf"></i>&nbsp;Imprimir</button>
+                     <button [disabled]="work_history.sample.status != 'Entregado'" type="button" class="btn btn-outline-success" (click)="send(work_history)"><i class="fas fa-envelope-open-text"></i>&nbsp;Enviar</button>
+                  </div>
+                </td>
+             </tr>
+          </tbody>
+       </table>
+    </div>
+ </div>

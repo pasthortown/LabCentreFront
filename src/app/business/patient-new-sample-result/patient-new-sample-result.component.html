@@ -43,7 +43,7 @@
     <div class="col-12 text-center">
         <div class="btn-group" role="group">
             <button type="button" class="btn btn-outline-primary" (click)="save_sample('En Proceso')">Guardar como Pendiente</button>
-            <button type="button" class="btn btn-outline-success" (click)="save_sample('Impreso')">Guardar como Finalizado</button>
+            <button type="button" class="btn btn-outline-success" (click)="save_sample('Impreso')">Imprimir Resultados</button>
         </div>
     </div>
 </div>
@@ -72,8 +72,8 @@
     </div>
 </div>
 <div class="row mt-4" *ngIf="selectedTemplate.id != 0 || !is_new">
-    <div class="col-12 text-center">
+    <div class="btn-group" role="group">
         <button type="button" class="btn btn-outline-primary" (click)="save_sample('En Proceso')">Guardar como Pendiente</button>
-        <button type="button" class="btn btn-outline-success" (click)="save_sample('Impreso')">Guardar como Finalizado</button>
+        <button type="button" class="btn btn-outline-success" (click)="save_sample('Impreso')">Imprimir Resultados</button>
     </div>
 </div>

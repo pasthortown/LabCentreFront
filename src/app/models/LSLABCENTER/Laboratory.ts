@@ -7,9 +7,11 @@ export class Laboratory {
    secondary_contact_number: String;
    description: String;
    address: String;
+   register: String;
    geolocation: any;
    constructor() {
       this.ruc = '';
+      this.register = '';
       this.responsable_name = '';
       this.main_contact_number = '';
       this.secondary_contact_number = '';

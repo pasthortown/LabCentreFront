@@ -7,7 +7,6 @@ import { ResultAttachment } from 'src/app/models/LSLABCENTER/ResultAttachment';
 import { TemplateService } from 'src/app/services/CRUD/LSLABCENTER/template.service';
 import { SampleService } from 'src/app/services/CRUD/LSLABCENTER/sample.service';
 import { NgxSpinnerService } from "ngx-spinner";
-import { ResultAttachmentService } from 'src/app/services/CRUD/LSLABCENTER/resultattachment.service';
 import { SampleParam } from 'src/app/models/LSLABCENTER/SampleParam';
 import { environment } from 'src/environments/environment';
 import { saveAs } from 'file-saver/FileSaver';
@@ -34,7 +33,6 @@ export class PatientNewSampleResultComponent implements OnInit {
   constructor( private toastr: ToastrManager,
             private spinner: NgxSpinnerService,
             private templateDataService: TemplateService, 
-            private resultAttachmentDataService: ResultAttachmentService,
             private sampleDataService: SampleService) { 
     this.sample_types = environment.tipo_muestras;
   }
@@ -163,13 +161,7 @@ export class PatientNewSampleResultComponent implements OnInit {
         const byteArray = new Uint8Array(byteNumbers);
         const blob = new Blob([byteArray], { type: 'application/pdf'});
         saveAs(blob, doc_name);
-        this.resultAttachment.sample_id = this.sample.id;
-        this.resultAttachment.result_attachment_file_name = doc_name;
-        this.resultAttachment.result_attachment_file_type = 'application/pdf';
-        this.resultAttachment.result_attachment_file = r;
-        this.resultAttachmentDataService.post(this.resultAttachment).then(r_attachment => {
-          this.finish_save(message, title_message);
-        }).catch( e_attachment => { console.log(e_attachment); });
+        this.finish_save(message,title_message);
     }).catch( e => { console.log(e); });
   }
 

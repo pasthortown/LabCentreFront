@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
         this.esperando = false;
         sessionStorage.setItem('api_token', r.token);
         sessionStorage.setItem('isLoggedin', 'true');
-        const userData = { id: r.id, name: r.name };
+        const userData = { id: r.id, name: r.name,  profiles: r.profiles};
         sessionStorage.setItem('user', JSON.stringify(userData));
         this.router.navigate(['/main']);
       }).catch( e => {
