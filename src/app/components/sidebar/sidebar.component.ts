@@ -12,6 +12,7 @@ export class SidebarComponent implements OnInit {
   @Input('profile_picture') profile_picture = new ProfilePicture();
   @Input('user') user = new User();
   @Input('show_menu') show_menu: any = {
+    has_laboratory: false,
     show_my_data: false,
     send_results: false,
     my_laboratory: false,

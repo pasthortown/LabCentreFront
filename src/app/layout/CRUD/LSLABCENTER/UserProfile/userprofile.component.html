@@ -1,8 +1,8 @@
-<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)"  size = "medium" color = "#fff" type = "ball-spin" [fullScreen] = "true">
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)"  size = "medium" color = "#e9890b" type = "ball-spin" [fullScreen] = "true">
    <p style="color: white" > Cargando información, por favor espere... </p>
 </ngx-spinner>
 <div class="row">
-   <h1 class="col-12 text-right">
+   <h1 class="col-12 text-md-right text-lg-right text-sm-left">
       Perfiles de Usuario
    </h1>
 </div>
@@ -30,7 +30,7 @@
       </div>
    </div>
 </div>
-<div class="row">
+<div class="row" style="width: 100%; overflow-x: auto;">
    <div class="col-12">
       <table class="table table-hover mt-2">
          <thead>
@@ -42,7 +42,7 @@
          </thead>
          <tbody>
             <tr *ngFor="let user_profile of user_profiles" (click)="selectUserProfile(user_profile)">
-               <td class="text-right"><span *ngIf="user_profileSelected === user_profile" class="far fa-hand-point-right"></span></td>
+               <td class="text-md-right text-lg-right text-sm-left"><span *ngIf="user_profileSelected === user_profile" class="far fa-hand-point-right"></span></td>
                <td>
                   <select class="form-control-plaintext" [(ngModel)]="user_profile.user_id" disabled>
                      <option *ngFor="let user of users" [value]="user.id">{{user.name}} - {{user.email}}</option>
@@ -90,8 +90,8 @@
       <div class="row">
          <div class="col-12">
             <div class="form-group row">
-               <label for="user_id" class="col-4 col-form-label">Usuario</label>
-               <div class="col-8">
+               <label for="user_id" class="col-md-4 col-lg-4 col-sm-12  col-form-label">Usuario</label>
+               <div class="col-md-8 col-lg-8 col-sm-12 ">
                   <select class="form-control" id="user_id" name="user_id" [(ngModel)]="user_profileSelected.user_id">
                      <option value="0">Seleccione...</option>
                      <option *ngFor="let user of users" [value]="user.id">{{user.name}} - {{user.email}}</option>
@@ -99,8 +99,8 @@
                </div>
             </div>
             <div class="form-group row">
-               <label for="profile_id" class="col-4 col-form-label">Perfil</label>
-               <div class="col-8">
+               <label for="profile_id" class="col-md-4 col-lg-4 col-sm-12  col-form-label">Perfil</label>
+               <div class="col-md-8 col-lg-8 col-sm-12 ">
                   <select class="form-control" id="profile_id" name="profile_id" [(ngModel)]="user_profileSelected.profile_id">
                      <option value="0">Seleccione...</option>
                      <option *ngFor="let profile of profiles" [value]="profile.id">{{profile.description}}</option>

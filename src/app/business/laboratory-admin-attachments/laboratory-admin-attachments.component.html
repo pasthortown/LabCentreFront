@@ -1,4 +1,4 @@
-<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)"  size = "medium" color = "#fff" type = "ball-spin" [fullScreen] = "true">
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)"  size = "medium" color = "#e9890b" type = "ball-spin" [fullScreen] = "true">
    <p style="color: white" > Cargando información, por favor espere... </p>
 </ngx-spinner>
 <div class="row mt-5">
@@ -24,8 +24,8 @@
        </div>
     </div>
  </div>
- <div class="row">
-    <div class="col-12">
+ <div class="row" style="width: 100%; overflow-x: auto;">
+    <div class="col-12" >
        <table class="table table-hover mt-2">
           <thead>
              <tr>
@@ -36,7 +36,7 @@
           </thead>
           <tbody>
              <tr *ngFor="let laboratory_attachment of laboratory_attachments" (click)="selectLaboratoryAttachment(laboratory_attachment)">
-                <td class="text-right"><span *ngIf="laboratory_attachmentSelected === laboratory_attachment" class="far fa-hand-point-right"></span></td>
+                <td class="text-md-right text-lg-right text-sm-left"><span *ngIf="laboratory_attachmentSelected === laboratory_attachment" class="far fa-hand-point-right"></span></td>
                 <td>{{laboratory_attachment.laboratory_attachment_description}}</td>
                 <th><button type="button" title="Descargar" class="btn btn-success" (click)="downloadFile(laboratory_attachment.laboratory_attachment_file, laboratory_attachment.laboratory_attachment_file_type, laboratory_attachment.laboratory_attachment_file_name)"><i class="fas fa-download"></i></button></th>
              </tr>
@@ -76,26 +76,26 @@
        <div class="row">
           <div class="col-12">
              <div class="form-group row">
-                <label for="laboratory_id" class="col-4 col-form-label">Descripción</label>
-                <div class="col-8">
+                <label for="laboratory_id" class="col-md-4 col-lg-4 col-sm-12  col-form-label">Descripción</label>
+                <div class="col-md-8 col-lg-8 col-sm-12 ">
                    <input type="text" class="form-control" id="laboratory_attachment_description" name="laboratory_attachment_description" placeholder="Descripción" [(ngModel)]="laboratory_attachmentSelected.laboratory_attachment_description">
                 </div>
              </div>
              <div class="form-group row">
-                <label for="laboratory_attachment_file_type" class="col-4 col-form-label">Tipo de Archivo</label>
-                <div class="col-8">
+                <label for="laboratory_attachment_file_type" class="col-md-4 col-lg-4 col-sm-12  col-form-label">Tipo de Archivo</label>
+                <div class="col-md-8 col-lg-8 col-sm-12 ">
                    <input type="text" class="form-control" id="laboratory_attachment_file_type" name="laboratory_attachment_file_type" placeholder="Tipo de Archivo" disabled [(ngModel)]="laboratory_attachmentSelected.laboratory_attachment_file_type">
                 </div>
              </div>
              <div class="form-group row">
-                <label for="laboratory_attachment_file_name" class="col-4 col-form-label">Nombre del Archivo</label>
-                <div class="col-8">
+                <label for="laboratory_attachment_file_name" class="col-md-4 col-lg-4 col-sm-12  col-form-label">Nombre del Archivo</label>
+                <div class="col-md-8 col-lg-8 col-sm-12 ">
                    <input type="text" class="form-control" id="laboratory_attachment_file_name" name="laboratory_attachment_file_name" placeholder="Nombre del Archivo" disabled [(ngModel)]="laboratory_attachmentSelected.laboratory_attachment_file_name">
                 </div>
              </div>
              <div class="form-group row">
-                <label for="laboratory_attachment_file" class="col-4 col-form-label">Archivo</label>
-                <div class="col-8">
+                <label for="laboratory_attachment_file" class="col-md-4 col-lg-4 col-sm-12  col-form-label">Archivo</label>
+                <div class="col-md-8 col-lg-8 col-sm-12 ">
                    <input type="file" class="form-control" id="laboratory_attachment_file" name="laboratory_attachment_file" placeholder="Archivo" (change)="CodeFileLaboratoryAttachment($event)">
                 </div>
              </div>

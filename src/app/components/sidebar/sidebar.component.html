@@ -1,9 +1,9 @@
 <nav class="sidebar" [ngClass]="{ sidebarPushRight: isActive, collapsed: collapsed }">
    <div class="list-group">
-      <a [routerLink]="['/main']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+      <a *ngIf="show_menu.has_laboratory" [routerLink]="['/main']" [routerLinkActive]="['router-link-active']" class="list-group-item">
          <i class="fas fa-concierge-bell"></i>&nbsp; <span>Atención a Pacientes</span>
       </a>
-      <a [routerLink]="['/in-course']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+      <a *ngIf="show_menu.has_laboratory" [routerLink]="['/in-course']" [routerLinkActive]="['router-link-active']" class="list-group-item">
          <i class="fas fa-diagnoses"></i>&nbsp; <span>Análisis Pendientes</span>
       </a>
       <a *ngIf="show_menu.send_results" [routerLink]="['/send-documents']" [routerLinkActive]="['router-link-active']" class="list-group-item">

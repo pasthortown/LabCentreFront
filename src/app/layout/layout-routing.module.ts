@@ -39,16 +39,6 @@ const routes: Routes = [
             canActivate: [AuthAdminGuard]
          },
          {
-            path: 'sample',
-            loadChildren: './CRUD/LSLABCENTER/Sample/sample.module#SampleModule',
-            canActivate: [AuthAdminGuard]
-         },
-         {
-            path: 'result_attachment',
-            loadChildren: './CRUD/LSLABCENTER/ResultAttachment/resultattachment.module#ResultAttachmentModule',
-            canActivate: [AuthAdminGuard]
-         },
-         {
             path: 'laboratory',
             loadChildren: './CRUD/LSLABCENTER/Laboratory/laboratory.module#LaboratoryModule',
             canActivate: [AuthAdminGuard]

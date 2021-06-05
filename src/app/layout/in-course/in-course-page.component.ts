@@ -13,7 +13,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 export class InCoursePageComponent implements OnInit {
   selected_sample_id = 0;
   pending_works: PendingWork[] = [];
-  laboratory_id = 1;
+  laboratory_id = 0;
   sample_selected = new Sample();
   patient_selected = new Patient();
 
@@ -28,7 +28,8 @@ export class InCoursePageComponent implements OnInit {
   refresh() {
     this.selected_sample_id = 0;
     this.pending_works = [];
-    this.laboratory_id = 1;
+    const userData = JSON.parse(sessionStorage.getItem('user'));
+    this.laboratory_id = userData.laboratory_id; 
     this.sample_selected = new Sample();
     this.patient_selected = new Patient();
     this.look_for_pending_work();

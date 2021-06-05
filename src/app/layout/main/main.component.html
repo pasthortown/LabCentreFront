@@ -1,7 +1,12 @@
-<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)"  size = "medium" color = "#fff" type = "ball-spin" [fullScreen] = "true">
+<div class="alert alert-danger" role="alert" *ngIf="laboratory_id == 0">
+    <p><strong>NO HEMOS ENCONTRADO UN LABORATORIO ASIGNADO A ESTE USUARIO</strong></p>
+    <p class="text-justify">Por favor comuníquese con el Administrador del Sistema para que su usuario sea registrado en uno de nuestros laboratorios.</p>
+    <strong>LSystems - LabCentre</strong>
+</div>
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)"  size = "medium" color = "#e9890b" type = "ball-spin" [fullScreen] = "true">
     <p style="color: white" > Cargando información, por favor espere... </p>
 </ngx-spinner>
-<div class="row">
+<div class="row" style="width: 100%; overflow-x: auto;" *ngIf="laboratory_id !== 0">
     <h5 class="col-12">Paciente</h5>
     <div class="col-12">
         <div class="input-group mb-3">
@@ -17,7 +22,7 @@
         </div>
     </div>
 </div>
-<div *ngIf="show_search_results">
+<div *ngIf="show_search_results" style="width: 100%; overflow-x: auto;">
     <h6 class="col-12">Pacientes Encontrados</h6>
     <div class="col-12">
         <table class="table table-hover mt-2">
@@ -51,24 +56,35 @@
         </table>
     </div>
 </div>
-<div class="row mt-5" *ngIf="patientSelected.id != 0">
+<div class="row mt-5" *ngIf="patientSelected.id != 0" style="width: 100%; overflow-x: auto;">
     <div class="col-12">
         <div class="card col-12">
             <h5 class="card-title text-center mt-4">DATOS DEL PACIENTE</h5>
-            <table class="table border-0">
-                <tbody>
-                  <tr>
-                    <th class="border-0 text-right">NOMBRE</th>
-                    <td class="border-0">{{patientSelected.fullname.value}}</td>
-                    <th class="border-0 text-right">IDENTIFICACIÓN</th>
-                    <td class="border-0">{{patientSelected.identification.value}}</td>
-                  </tr>
-                  <tr>
-                    <th class="border-0 text-right">EDAD</th>
-                    <td class="border-0" colspan="3">{{patientSelected.age}} AÑOS</td>
-                  </tr>
-                </tbody>
-              </table>
+            <div class="row">
+                <div class="col-md-3 col-lg-3 col-sm-6 text-md-right text-lg-right text-sm-left">
+                    <strong>NOMBRE</strong>
+                </div>
+                <div class="col-md-3 col-lg-3 col-sm-6 text-left">
+                    {{patientSelected.fullname.value}}
+                </div>
+                <div class="col-md-3 col-lg-3 col-sm-6 text-md-right text-lg-right text-sm-left">
+                    <strong>IDENTIFICACIÓN</strong>
+                </div>
+                <div class="col-md-3 col-lg-3 col-sm-6 text-left">
+                    {{patientSelected.identification.value}}
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-md-3 col-lg-3 col-sm-6 text-md-right text-lg-right text-sm-left">
+                    <strong>EDAD</strong>
+                </div>
+                <div class="col-md-3 col-lg-3 col-sm-6 text-left">
+                    {{patientSelected.age}}&nbsp;AÑOS
+                </div>
+                <div class="col-md-6 col-lg-6 col-sm-12 text-md-right text-lg-right text-sm-left">
+                    
+                </div>
+            </div>
         </div>
     </div>
 </div>

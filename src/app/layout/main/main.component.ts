@@ -16,7 +16,7 @@ export class MainComponent implements OnInit {
     patients: any[] = [];
     patientSelected: Patient = new Patient();
     show_search_results = false;
-    laboratory_id = 1;
+    laboratory_id = 0;
     patient_to_sample: any = null;
 
     constructor(
@@ -34,7 +34,8 @@ export class MainComponent implements OnInit {
         this.patients = [];
         this.patientSelected = new Patient();
         this.show_search_results = false;
-        this.laboratory_id = 1; 
+        const userData = JSON.parse(sessionStorage.getItem('user'));
+        this.laboratory_id = userData.laboratory_id; 
     }
 
     wait_for_search(event) {

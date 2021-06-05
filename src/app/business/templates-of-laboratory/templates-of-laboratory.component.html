@@ -1,4 +1,4 @@
-<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)"  size = "medium" color = "#fff" type = "ball-spin" [fullScreen] = "true">
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)"  size = "medium" color = "#e9890b" type = "ball-spin" [fullScreen] = "true">
     <p style="color: white" > Cargando información, por favor espere... </p>
  </ngx-spinner>
  <div class="row mt-5">
@@ -24,7 +24,7 @@
        </div>
     </div>
  </div>
- <div class="row">
+ <div class="row" style="width: 100%; overflow-x: auto;">
     <div class="col-12">
        <table class="table table-hover mt-2">
           <thead>
@@ -38,7 +38,7 @@
           </thead>
           <tbody>
              <tr *ngFor="let template of templates" (click)="selectTemplate(template)">
-                <td class="text-right"><span *ngIf="templateSelected === template" class="far fa-hand-point-right"></span></td>
+                <td class="text-md-right text-lg-right text-sm-left"><span *ngIf="templateSelected === template" class="far fa-hand-point-right"></span></td>
                 <td>{{template.sample_description}}</td>
                 <td>{{template.title}}</td>
                 <td>{{template.orientation}}</td>
@@ -80,8 +80,8 @@
        <div class="row">
           <div class="col-12">
             <div class="form-group row">
-               <label for="title" class="col-4 col-form-label">Tipo de Muestra</label>
-               <div class="col-8">
+               <label for="title" class="col-md-4 col-lg-4 col-sm-12  col-form-label">Tipo de Muestra</label>
+               <div class="col-md-8 col-lg-8 col-sm-12 ">
                   <select class="form-control" id="sample_description" name="sample_description" [(ngModel)]="templateSelected.sample_description">
                      <option selected value="">Seleccione ...</option>
                      <option *ngFor="let sample_type of sample_types" [value]="sample_type.type">{{sample_type.type}}</option>
@@ -89,14 +89,14 @@
                </div>
             </div>
              <div class="form-group row">
-                <label for="title" class="col-4 col-form-label">Título</label>
-                <div class="col-8">
+                <label for="title" class="col-md-4 col-lg-4 col-sm-12  col-form-label">Título</label>
+                <div class="col-md-8 col-lg-8 col-sm-12 ">
                    <input type="text" class="form-control" id="title" name="title" placeholder="Título" [(ngModel)]="templateSelected.title">
                 </div>
              </div>
              <div class="form-group row">
-                <label for="orientation" class="col-4 col-form-label">Orientación</label>
-                <div class="col-8">
+                <label for="orientation" class="col-md-4 col-lg-4 col-sm-12  col-form-label">Orientación</label>
+                <div class="col-md-8 col-lg-8 col-sm-12 ">
                    <select class="form-control" id="orientation" name="orientation" [(ngModel)]="templateSelected.orientation">
                       <option selected value="">Seleccione ...</option>
                       <option value="HORIZONTAL">HORIZONTAL</option>
@@ -117,14 +117,6 @@
                       id="body" name="body"
                    >
                    </ngx-codemirror>
-                </div>
-                <label for="body" class="col-12 col-form-label">Vista Previa</label>
-                <div class="col-12">
-                   <div class="row">
-                      <div class="col-1"></div>
-                      <div class="col-10 border" [innerHtml]="templateSelected.body"></div>
-                      <div class="col-1"></div>
-                   </div>
                 </div>
              </div>
           </div>

@@ -15,6 +15,7 @@ export class LayoutComponent implements OnInit {
     profile_picture = new ProfilePicture();
 
     show_menu: any = {
+        has_laboratory: false,
         show_my_data: false,
         send_results: false,
         my_laboratory: false,
@@ -36,14 +37,14 @@ export class LayoutComponent implements OnInit {
 
     getUserInfo() {
         const userData = JSON.parse(sessionStorage.getItem('user'));
-        this.checkProfiles(userData.profiles);
+        this.checkProfiles(userData.profiles, userData.laboratory_id);
         this.userDataService.get(userData.id).then( r => {
             this.user = r as User;
             this.getProfilePicture();
         }).catch( e => { console.log(e); });
     }
 
-    checkProfiles(profiles: any[]) {
+    checkProfiles(profiles: any[], laboratory_id: number) {
         let is_admin = false;
         let is_lab_admin = false;
         profiles.forEach(element => {
@@ -54,11 +55,13 @@ export class LayoutComponent implements OnInit {
                 is_lab_admin = true;
             }
         });
+
         this.show_menu = {
-            show_my_data: is_admin || is_lab_admin,
-            send_results: is_admin || is_lab_admin,
-            my_laboratory: is_lab_admin,
-            my_templates: is_lab_admin,
+            has_laboratory: laboratory_id > 0,
+            show_my_data: is_admin || (is_lab_admin && laboratory_id > 0),
+            send_results: (is_lab_admin && laboratory_id > 0),
+            my_laboratory: (is_lab_admin && laboratory_id > 0),
+            my_templates: (is_lab_admin && laboratory_id > 0),
             patient: is_admin,
             laboratory: is_admin,
             laboratory_attachment: is_admin,

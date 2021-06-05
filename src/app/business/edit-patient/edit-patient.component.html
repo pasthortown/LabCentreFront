@@ -2,8 +2,8 @@
     <div class="row">
         <div class="col-12">
             <div class="form-group row">
-                <label for="identification" class="col-4 col-form-label">Identificación</label>
-                <div class="col-8">
+                <label for="identification" class="col-md-4 col-lg-4 col-sm-12 col-form-label">Identificación</label>
+                <div class="col-md-8 col-lg-8 col-sm-12">
                     <input type="text" maxlength="13" class="form-control" id="identification" name="identification" placeholder="Identificación" formControlName="identification">
                     <div class="alert alert-warning" *ngIf="patientSelected.identification.invalid && (patientSelected.identification.dirty || patientSelected.identification.touched)">
                         <div class="container-error-message" *ngIf="patientSelected.identification.errors.required">
@@ -16,8 +16,8 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="fullname" class="col-4 col-form-label">Nombre Completo</label>
-                <div class="col-8">
+                <label for="fullname" class="col-md-4 col-lg-4 col-sm-12  col-form-label">Nombre Completo</label>
+                <div class="col-md-8 col-lg-8 col-sm-12 ">
                     <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Nombre Completo" formControlName="fullname">
                     <div class="alert alert-warning" *ngIf="patientSelected.fullname.invalid && (patientSelected.fullname.dirty || patientSelected.fullname.touched)">
                         <div class="container-error-message" *ngIf="patientSelected.fullname.errors.required">
@@ -30,15 +30,15 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="born_date" class="col-4 col-form-label">Fecha de Nacimiento</label>
-                <div class="col-8">
+                <label for="born_date" class="col-md-4 col-lg-4 col-sm-12  col-form-label">Fecha de Nacimiento</label>
+                <div class="col-md-8 col-lg-8 col-sm-12 ">
                     <input type="date" class="form-control" id="born_date" name="born_date" placeholder="Fecha de Nacimiento" formControlName="born_date" (change)="patientSelected.calc_age()">
                     <small *ngIf="patientSelected.age > -1"><strong>Edad:</strong>&nbsp;{{patientSelected.age}}&nbsp;años cumplidos</small>
                 </div>
             </div>
             <div class="form-group row">
-                <label for="gender" class="col-4 col-form-label">Género</label>
-                <div class="col-8">
+                <label for="gender" class="col-md-4 col-lg-4 col-sm-12  col-form-label">Género</label>
+                <div class="col-md-8 col-lg-8 col-sm-12 ">
                     <select class="form-control" id="gender" name="gender" formControlName="gender">
                         <option selected value="">Seleccione ...</option>
                         <option value="Masculino">Masculino</option>
@@ -47,8 +47,8 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="email" class="col-4 col-form-label">Correo Electrónico</label>
-                <div class="col-8">
+                <label for="email" class="col-md-4 col-lg-4 col-sm-12  col-form-label">Correo Electrónico</label>
+                <div class="col-md-8 col-lg-8 col-sm-12 ">
                     <input type="text" class="form-control" id="email" name="email" placeholder="Correo Electrónico" formControlName="email">
                     <div class="alert alert-warning" *ngIf="patientSelected.email.invalid && (patientSelected.email.dirty || patientSelected.email.touched)">
                         <div class="container-error-message" *ngIf="patientSelected.email.errors.required">
@@ -64,8 +64,8 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="contact_number" class="col-4 col-form-label">Número Telefónico de Contacto</label>
-                <div class="col-8">
+                <label for="contact_number" class="col-md-4 col-lg-4 col-sm-12  col-form-label">Número Telefónico de Contacto</label>
+                <div class="col-md-8 col-lg-8 col-sm-12 ">
                     <input type="text" class="form-control" maxlength="10" id="contact_number" name="contact_number" placeholder="Número Telefónico de Contacto" formControlName="contact_number">
                     <div class="alert alert-warning" *ngIf="patientSelected.contact_number.invalid && (patientSelected.contact_number.dirty || patientSelected.contact_number.touched)">
                         <div class="container-error-message" *ngIf="patientSelected.contact_number.errors.required">
@@ -81,8 +81,8 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="address" class="col-4 col-form-label">Dirección</label>
-                <div class="col-8">
+                <label for="address" class="col-md-4 col-lg-4 col-sm-12  col-form-label">Dirección</label>
+                <div class="col-md-8 col-lg-8 col-sm-12 ">
                     <input type="text" class="form-control" id="address" name="address" placeholder="Dirección" formControlName="address">
                     <div class="alert alert-warning" *ngIf="patientSelected.address.invalid && (patientSelected.address.dirty || patientSelected.address.touched)">
                         <div class="container-error-message" *ngIf="patientSelected.address.errors.required">

@@ -1,41 +1,44 @@
-<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)"  size = "medium" color = "#fff" type = "ball-spin" [fullScreen] = "true">
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)"  size = "medium" color = "#e9890b" type = "ball-spin" [fullScreen] = "true">
     <p style="color: white" > Cargando información, por favor espere... </p>
 </ngx-spinner>
 <div class="row mt-4">
     <div class="col-12">
         <div class="card col-12">
             <h5 class="card-title text-center mt-4">DATOS DE LA MUESTRA</h5>
-            <table class="table border-0">
-                <tbody>
-                  <tr>
-                    <th class="border-0 text-right">TIPO DE MUESTRA</th>
-                    <td class="border-0">
-                        <select *ngIf="is_new" class="form-control" id="sample_description" name="sample_description" [(ngModel)]="sample.description" (change)="getTemplates(sample.description, laboratory_id)">
-                            <option selected value="">Seleccione ...</option>
-                            <option *ngFor="let sample_type of sample_types" [value]="sample_type.type">{{sample_type.type}}</option>
-                        </select>
-                        <strong *ngIf="!is_new">{{sample.description}}</strong>
-                    </td>
-                    <th class="border-0 text-right">FECHA DE TOMA DE LA MUESTRA</th>
-                    <td class="border-0">
-                        <input type="date" *ngIf="is_new" class="form-control" id="acquisition_date" name="acquisition_date" placeholder="FECHA DE TOMA DE LA MUESTRA" [ngModel]="sample.acquisition_date | date:'y-MM-dd'" (ngModelChange)="sample.acquisition_date = $event">
+            <div class="row">
+                <div class="col-md-3 col-lg-3 col-sm-6 text-md-right text-lg-right text-sm-left">
+                    <strong>TIPO DE MUESTRA</strong>
+                </div>
+                <div class="col-md-3 col-lg-3 col-sm-6">
+                    <select *ngIf="is_new" class="form-control" id="sample_description" name="sample_description" [(ngModel)]="sample.description" (change)="getTemplates(sample.description, laboratory_id)">
+                        <option selected value="">Seleccione ...</option>
+                        <option *ngFor="let sample_type of sample_types" [value]="sample_type.type">{{sample_type.type}}</option>
+                    </select>
+                    <strong *ngIf="!is_new">{{sample.description}}</strong>
+                </div>
+                <div class="col-md-3 col-lg-3 col-sm-6 text-md-right text-lg-right text-sm-left">
+                    <strong>FECHA DE TOMA DE LA MUESTRA</strong>
+                </div>
+                <div class="col-md-3 col-lg-3 col-sm-6">
+                    <input type="date" *ngIf="is_new" class="form-control" id="acquisition_date" name="acquisition_date" placeholder="FECHA DE TOMA DE LA MUESTRA" [ngModel]="sample.acquisition_date | date:'y-MM-dd'" (ngModelChange)="sample.acquisition_date = $event">
                         <strong *ngIf="!is_new">{{sample.acquisition_date | date:'y-MM-dd'}}</strong>
-                    </td>
-                  </tr>
-                  <tr>
-                      <th class="border-0 text-right">ANÁLISIS REQUERIDO</th>
-                      <td class="border-0">
-                        <select class="form-control" id="result_required" name="result_required" [(ngModel)]="selected_template_id" (change)="selectTemplate()" *ngIf="is_new">
-                            <option selected value="0">Seleccione ...</option>
-                            <option *ngFor="let template of templates" [value]="template.id">{{template.title}}</option>
-                        </select>
-                        <strong *ngIf="!is_new">{{sample.analysys_title}}</strong>
-                      </td>
-                      <th class="border-0"></th>
-                      <td class="border-0"></td>
-                  </tr>
-                </tbody>
-              </table>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-md-3 col-lg-3 col-sm-6 text-md-right text-lg-right text-sm-left">
+                    <strong>ANÁLISIS REQUERIDO</strong>
+                </div>
+                <div class="col-md-3 col-lg-3 col-sm-6">
+                    <select class="form-control" id="result_required" name="result_required" [(ngModel)]="selected_template_id" (change)="selectTemplate()" *ngIf="is_new">
+                        <option selected value="0">Seleccione ...</option>
+                        <option *ngFor="let template of templates" [value]="template.id">{{template.title}}</option>
+                    </select>
+                    <strong *ngIf="!is_new">{{sample.analysys_title}}</strong>
+                </div>
+                <div class="col-md-6 col-lg-6 col-sm-12">
+                    
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -47,7 +50,7 @@
         </div>
     </div>
 </div>
-<div class="row mt-4" *ngIf="selectedTemplate.id != 0 || !is_new">
+<div class="row mt-4" *ngIf="selectedTemplate.id != 0 || !is_new" style="width: 100%; overflow-x: auto;">
     <div class="col-12">
         <div class="card col-12">
             <h5 class="card-title text-center mt-4">ANÁLISIS DE LA MUESTRA</h5>
@@ -72,8 +75,10 @@
     </div>
 </div>
 <div class="row mt-4" *ngIf="selectedTemplate.id != 0 || !is_new">
-    <div class="btn-group" role="group">
-        <button type="button" class="btn btn-outline-primary" (click)="save_sample('En Proceso')">Guardar como Pendiente</button>
-        <button type="button" class="btn btn-outline-success" (click)="save_sample('Impreso')">Imprimir Resultados</button>
+    <div class="col-12 text-center">
+        <div class="btn-group" role="group">
+            <button type="button" class="btn btn-outline-primary" (click)="save_sample('En Proceso')">Guardar como Pendiente</button>
+            <button type="button" class="btn btn-outline-success" (click)="save_sample('Impreso')">Imprimir Resultados</button>
+        </div>
     </div>
 </div>

@@ -19,7 +19,7 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 export class SendDocumentsPageComponent implements OnInit {
   works_to_send: PendingWork[] = [];
   sample_selected: Sample = new Sample();
-  laboratory_id = 1;
+  laboratory_id = 0;
 
   constructor( private toastr: ToastrManager,
               private spinner: NgxSpinnerService, 
@@ -32,6 +32,8 @@ export class SendDocumentsPageComponent implements OnInit {
   }
 
   refresh() {
+    const userData = JSON.parse(sessionStorage.getItem('user'));
+    this.laboratory_id = userData.laboratory_id; 
     this.look_for_send_documents();
   }
 

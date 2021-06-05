@@ -1,4 +1,4 @@
-<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)"  size = "medium" color = "#fff" type = "ball-spin" [fullScreen] = "true">
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)"  size = "medium" color = "#e9890b" type = "ball-spin" [fullScreen] = "true">
     <p style="color: white" > Cargando información, por favor espere... </p>
 </ngx-spinner>
 <div class="row">
@@ -15,20 +15,31 @@
     <div class="col-12">
         <div class="card col-12">
             <h5 class="card-title text-center mt-4">DATOS DEL PACIENTE</h5>
-            <table class="table border-0">
-                <tbody>
-                  <tr>
-                    <th class="border-0 text-right">NOMBRE</th>
-                    <td class="border-0">{{patient_selected.fullname}}</td>
-                    <th class="border-0 text-right">IDENTIFICACIÓN</th>
-                    <td class="border-0">{{patient_selected.identification}}</td>
-                  </tr>
-                  <tr>
-                    <th class="border-0 text-right">EDAD</th>
-                    <td class="border-0" colspan="3">{{patient_selected.age}} AÑOS</td>
-                  </tr>
-                </tbody>
-              </table>
+            <div class="row">
+              <div class="col-md-3 col-lg-3 col-sm-6 text-md-right text-lg-right text-sm-left">
+                  <strong>NOMBRE</strong>
+              </div>
+              <div class="col-md-3 col-lg-3 col-sm-6">
+                {{patient_selected.fullname}}
+              </div>
+              <div class="col-md-3 col-lg-3 col-sm-6 text-md-right text-lg-right text-sm-left">
+                  <strong>IDENTIFICACIÓN</strong>
+              </div>
+              <div class="col-md-3 col-lg-3 col-sm-6">
+                {{patient_selected.identification}}
+              </div>
+            </div>
+            <div class="row mb-4">
+              <div class="col-md-3 col-lg-3 col-sm-6 text-md-right text-lg-right text-sm-left">
+                  <strong>EDAD</strong>
+              </div>
+              <div class="col-md-3 col-lg-3 col-sm-6">
+                {{patient_selected.age}}&nbsp;AÑOS
+              </div>
+              <div class="col-md-6 col-lg-6 col-sm-12">
+                  
+              </div>
+          </div>
         </div>
     </div>
 </div>
